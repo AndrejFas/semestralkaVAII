@@ -1,0 +1,67 @@
+body {
+    background-color: #ecebeb !important;
+}
+
+/* farba navbaru */
+.navbar {
+    background-color: #feb81c;
+}
+
+/* text v navbare */
+.navbar a {
+    float: left;
+    display: block;
+    color: #0e306d;
+    font-family: "Arial", serif;
+    font-weight: bold;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+/* text v navbare pri "hover-ovani" */
+.navbar a:hover {
+    background-color: #feb81c;
+    color: white;
+    font-family: "Arial", serif;
+    font-weight: bold;
+}
+
+.fri-image {
+    width: 100%;
+    height: auto;
+    float: left;
+    padding-left: 100px;
+}
+
+.fri-image-a {
+    width: 300px;
+}
+
+
+.login {
+    float: right;
+    margin: 5px;
+    padding-right: 100px;
+}
+
+.login i {
+    padding-right: 5px;
+}
+
+.dropdown-menu a:hover{
+    background-color: white;
+    color: #0e306d;
+}
+
+.card-body {
+    background-color: lightgray;
+}
+
+.card {
+    margin: 10px;
+}
+
+div .errorText {
+    color: red;
+}
