@@ -27,7 +27,7 @@
                 <label for="username">Username:</label>
                 <input type="text" name="username" required class="form-control">
             </div>
-    
+
             <div class="form-group">
                 <label for="password">Password:</label>
                 <input type="password" name="password" required class="form-control">
@@ -36,28 +36,25 @@
             @error('login')
                 <div>{{ $message }}</div>
             @enderror
-    
+
             <button type="submit" class="btn btn-secondary" style="margin-bottom: 20px; margin-top: 20px" >Prihlásiť sa</button>
         </form>
 
         {{-- <form method="POST" action="{{ route('login.authenticate') }}">
             @csrf
-        
+
             <label for="username">Username:</label>
             <input type="text" name="username" required>
-        
+
             <label for="password">Password:</label>
             <input type="password" name="password" required>
-        
+
             @error('login')
                 <div>{{ $message }}</div>
             @enderror
-        
+
             <button type="submit">Login</button>
         </form> --}}
     </div>
 </div>
-
-
-
 @endsection

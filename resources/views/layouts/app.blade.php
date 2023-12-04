@@ -29,7 +29,7 @@
                     <li class="nav-item">
                         <a href="{{ route('login') }}">Domov</a>
                     </li>
-
+                    @auth
                     <li class="nav-item">
                         <a href="#">Dokumenty</a>
                     </li>
@@ -45,27 +45,21 @@
                             <li><a class="dropdown-item" href="#">Odovzdávanie súborov</a></li>
                         </ul>
                     </li>
+                    
 
                 </ul>
 
                 <div class="login">
-                    @auth
+                    
                         <i class="bi bi-person-circle"></i>
                         <span>{{ auth()->user()->name }}</span>
-                        <a href="{{ route('logout') }}">Logout</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="btn btn-link">Logout</button>
+                        </form>
+                    
                     @endauth
                 </div>
-
-
-                <div class="login">
-                    <i class="bi bi-person-circle"></i>
-                    <button type="button" class="btn btn-warning">Profil</button>
-                </div>
-
-                
-
             </div>
         </div>
     </nav>
