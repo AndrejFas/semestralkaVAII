@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html lang="sk">
-
 @extends('layouts.header')
 
 @section('content')
@@ -111,9 +108,3 @@
 
 </div>
 @endsection
-
-
-
-
-
-</html>

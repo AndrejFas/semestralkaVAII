@@ -1,4 +1,3 @@
-
 @extends('layouts.header')
 
 @section('content')
@@ -89,5 +88,3 @@
     </section>
 </div>
 @endsection
-
-</html>

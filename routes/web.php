@@ -3,8 +3,5 @@
 use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [MainController::class,'login'])->name('login');
-Route::get('add', [MainController::class,'add'])->name('add');
-Route::get('documents', [MainController::class,'documents'])->name('documents');
-Route::get('prace', [MainController::class,'prace'])->name('prace');
-Route::get('pouzivatelSave',[MainController::class,'pouzivatel_save'])->name('savePouzivatel');
+Route::get('/', 'LoginController@showLoginForm')->name('login');
+Route::post('/login/authenticate', 'LoginController@authenticate')->name('login.authenticate');
