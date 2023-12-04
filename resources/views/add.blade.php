@@ -1,4 +1,4 @@
-@extends('layouts.header')
+@extends('layouts.app')
 
 @section('content')
 <div class="card-body card mx-auto" style="display: block; width: 50rem">

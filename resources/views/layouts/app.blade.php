@@ -31,7 +31,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="{{ route('documents') }}">Dokumenty</a>
+                        <a href="#">Dokumenty</a>
                     </li>
 
                     <li class="nav-item dropdown">
@@ -39,7 +39,7 @@
                             Témy
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ route('prace') }}">Záverečné práce</a></li>
+                            <li><a class="dropdown-item" href="#">Záverečné práce</a></li>
                             <li><a class="dropdown-item" href="#">Priradená téma</a></li>
                             <li><a class="dropdown-item" href="#">Informácie o štátnej skúške</a></li>
                             <li><a class="dropdown-item" href="#">Odovzdávanie súborov</a></li>
@@ -47,10 +47,6 @@
                     </li>
 
                 </ul>
-                <div class="login">
-                    <i class="bi bi-person-circle"></i>
-                    <button type="button" class="btn btn-warning">Profil</button>
-                </div>
 
                 <div class="login">
                     @auth
@@ -62,11 +58,20 @@
                     @endauth
                 </div>
 
+
+                <div class="login">
+                    <i class="bi bi-person-circle"></i>
+                    <button type="button" class="btn btn-warning">Profil</button>
+                </div>
+
+                
+
             </div>
         </div>
     </nav>
 
     @yield('content')
+
 
     <footer>
         <div style="text-align: center">Copyright 2023 fasanok</div>

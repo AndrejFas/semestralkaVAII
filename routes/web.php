@@ -1,7 +1,11 @@
 <?php
 
-use App\Http\Controllers\MainController;
-use Illuminate\Support\Facades\Route;
 
-Route::get('/', 'LoginController@showLoginForm')->name('login');
-Route::post('/login/authenticate', 'LoginController@authenticate')->name('login.authenticate');
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
+
+// ... other routes
+
+Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login/authenticate', [LoginController::class, 'authenticate'])->name('login.authenticate');
