@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class LoginController extends Controller
 {
@@ -12,25 +13,35 @@ class LoginController extends Controller
         return view('home');
     }
 
-
     public function authenticate(Request $request)
-{
-    $credentials = $request->only('username', 'password');
+    {
+        $request->validate([
+            'username' => [
+                'required',
+                'regex:/^[a-zA-Z0-9]+$/',
+                Rule::notIn(['http', 'https']) // Zabraňuje použitiu http alebo https v username
+            ],
+            'password' => [
+                'required',
+                'regex:/^[a-zA-Z0-9.,_-]+$/',
+                Rule::notIn(['http', 'https']) // Zabraňuje použitiu http alebo https v hesle
+            ],
+        ]);
 
-    if (Auth::attempt($credentials)) {
-        // Authentication passed
-        return redirect()->route('login'); 
+        $credentials = $request->only('username', 'password');
+
+        if (Auth::attempt($credentials)) {
+            // Authentication passed
+            return redirect()->route('login');
+        }
+
+        // Authentication failed
+        return redirect()->back()->withErrors(['login' => 'Invalid credentials'])->withInput();
     }
 
-    // Authentication failed
-    return redirect()->back()->withErrors(['login' => 'Invalid credentials'])->withInput();
-}
-
-public function logout()
-{
-    Auth::logout();
-    return redirect()->route('login');
-}
-
-
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('login');
+    }
 }
