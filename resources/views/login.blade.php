@@ -1,8 +1,9 @@
 
 @extends('layouts.header')
 @section('content')
-<div class="card mx-auto" style="width: 50rem;">
-    <div class="card-body">
+
+<div class="row">
+    <div class="col-md-6 card mx-auto">
         <h5 class="card-title">Linky</h5>
 
         <div>
@@ -17,26 +18,28 @@
     </div>
 </div>
 
-<div class="card mx-auto" style="width: 50rem;">
-    <div class="card-body">
-        <h5 class="card-title">Pre prístup k záverečným prácam je potrebné prihlásenie</h5>
-
-        <form action="" method="POST" >
-            <div class="input-group input-group-sm mb-3">
-                <span class="input-group-text" id="meno">Prihlasovacie meno</span>
-                <input type="text" class="form-control" aria-label="Sizing example input">
+<div class="row">
+    <div class="col-md-6 card mx-auto">
+        <h5 class="text-center">Pre prístup k záverečným prácam je potrebné prihlásenie</h5>
+        <form action="{{ route('login') }}" method="post" >
+            <div class="form-group">
+                <label for="meno">Prihlasovacie meno</label>
+                <input required type="text" value="{{ old('login') }}" class="form-control" placeholder="login" name = "login" id="login">
+                {{-- <p class="small text-danger">{{}}</p> --}}
             </div>
     
-            <div class="input-group input-group-sm mb-3">
-                <span class="input-group-text" id="heslo">Heslo</span>
-                <input type="text" class="form-control" aria-label="Sizing example input">
+            <div class="form-group">
+                <label  for="heslo">Heslo</label>
+                <input required type="text" value="{{ old('heslo') }}" class="form-control" placeholder="heslo" name="heslo" id="heslo">
+                {{-- <p class="small text-danger">{{}}</p> --}}
             </div>
     
-            <button>Prihlásiť sa</button>
+            <button type="submit" class="btn btn-secondary" style="margin-bottom: 20px; margin-top: 20px" >Prihlásiť sa</button>
         </form>
-        
-
     </div>
 </div>
+
+
+
 @endsection
     

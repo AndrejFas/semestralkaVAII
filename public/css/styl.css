@@ -55,12 +55,13 @@ body {
     color: #0e306d;
 }
 
-.card-body {
-    background-color: lightgray;
+.col-md-6.card.mx-auto{
+    margin-top: 1rem;
 }
 
 .card {
-    margin: 10px;
+    padding: 10px;
+    background-color: lightgray !important;
 }
 
 div .errorText {

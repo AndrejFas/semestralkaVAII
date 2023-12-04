@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pouzivatel;
 use Illuminate\Http\Request;
 
 class MainController extends Controller
@@ -22,5 +23,10 @@ class MainController extends Controller
 
     public function prace(){
         return view('prace');
+    }
+
+    public function pouzivatel_save(){
+        $m = new Pouzivatel();
+
     }
 }
