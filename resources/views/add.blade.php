@@ -1,7 +1,7 @@
-<!DOCTYPE html>
-<html lang="sk">
 
+@extends('layouts.header')
 
+@section('content')
 <div class="card-body card mx-auto" style="display: block; width: 50rem">
     <section class="container">
         <h4 class="center">Pridaj pracu</h4>
@@ -88,6 +88,6 @@
         </form>
     </section>
 </div>
-
+@endsection
 
 </html>

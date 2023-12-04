@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="sk">
 
+@extends('layouts.header')
+
+@section('content')
 <div class="card mx-auto" style="width: 50rem;">
     <div class="card-body">
         <div class="input-group input-group-sm mb-3">
@@ -107,6 +110,9 @@
 <div class="card mx-auto prace">
 
 </div>
+@endsection
+
+
 
 
 
