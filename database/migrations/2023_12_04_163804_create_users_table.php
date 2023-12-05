@@ -1,37 +1,48 @@
 <?php
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB; 
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class User extends Authenticatable
+return new class extends Migration
 {
-    use HasFactory, Notifiable;
+    /**
+     * Run the migrations.
+     *
+     * 
+     */
+    public function up()
+    {
+        Schema::create('users', function (Blueprint $table) {
+            $table->id();
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('username')->unique();
+            $table->string('password');
+            $table->enum('user_type', ['admin', 'veduci', 'student'])->default('student');
+            $table->timestamps();
+        });
+
+        // Hashovanie hesla pri vytvorení používateľa
+        DB::table('users')->insert([
+            'first_name' => 'Admin',
+            'last_name' => 'User',
+            'username' => 'admin',
+            'password' => bcrypt('admin_password'),
+            'user_type' => 'admin',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+    }
 
     /**
-     * The attributes that are mass assignable.
+     * Reverse the migrations.
      *
-     * @var array
+     * @return void
      */
-    protected $fillable = [
-        'first_name', 'last_name', 'username', 'password', 'user_type',
-    ];
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
-
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
-}
+    public function down()
+    {
+        Schema::dropIfExists('users');
+    }
+};

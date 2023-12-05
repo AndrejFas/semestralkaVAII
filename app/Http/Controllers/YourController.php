@@ -52,31 +52,4 @@ class YourController extends Controller
     return redirect()->route('login');
 }
 
-public function addNewUser(Request $request)
-    {
-
-        $request->validate([
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'username' => 'required|unique:users',
-            'password' => 'required',
-            'user_type' => 'required|in:admin,user',
-        ]);
-
-        User::create([
-            'first_name' => $request->input('first_name'),
-            'last_name' => $request->input('last_name'),
-            'username' => $request->input('username'),
-            'password' => bcrypt($request->input('password')),
-            'user_type' => $request->input('user_type'),
-        ]);
-
-        return 'Nový používateľ bol pridaný do databázy.';
-    }
-
-    
-    public function addUser(){
-        return view('addPouzivatel');
-    }
-
 }

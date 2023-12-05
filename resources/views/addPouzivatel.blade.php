@@ -3,7 +3,8 @@
 @section('content')
 
 <!-- Formulár na pridanie používateľa -->
-<form id="pridajPouzivatelaForm">
+<form id="pridajPouzivatelaForm" action="{{ route('pridaj.pouzivatela') }}" method="POST">
+    @csrf
     <label for="first_name">Meno:</label>
     <input type="text" id="first_name" name="first_name" required>
 
@@ -23,7 +24,7 @@
         <option value="student">Student</option>
     </select>
 
-    <button type="button" id="pridajPouzivatelaBtn">Pridaj používateľa</button>
+    <button type="submit" id="pridajPouzivatelaBtn">Pridaj používateľa</button>
 </form>
 
 </body>
