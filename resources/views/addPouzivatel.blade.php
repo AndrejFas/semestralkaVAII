@@ -3,29 +3,46 @@
 @section('content')
 
 <!-- Formulár na pridanie používateľa -->
-<form id="pridajPouzivatelaForm" action="{{ route('pridaj.pouzivatela') }}" method="POST">
-    @csrf
-    <label for="first_name">Meno:</label>
-    <input type="text" id="first_name" name="first_name" required>
 
-    <label for="last_name">Priezvisko:</label>
-    <input type="text" id="last_name" name="last_name" required>
+<div class="row">
+    <div class="col-md-6 card mx-auto">
+        <form id="pridajPouzivatelaForm" action="{{ route('pridaj.pouzivatela') }}" method="POST">
+            @csrf
 
-    <label for="username">Používateľské meno:</label>
-    <input type="text" id="username" name="username" required>
+            <div class="form-group">
+                <label for="first_name">Meno:</label>
+                <input type="text" id="first_name" name="first_name" class="form-control" required pattern="[A-Za-záäčďéěíĺľňóôŕšťúůýžÁÄČĎÉĚÍĹĽŇÓÔŔŠŤÚŮÝŽ]+">
+            </div>
 
-    <label for="password">Heslo:</label>
-    <input type="password" id="password" name="password" required>
+            <div class="form-group">
+                <label for="last_name">Priezvisko:</label>
+                <input type="text" id="last_name" name="last_name" class="form-control" required pattern="[A-Za-záäčďéěíĺľňóôŕšťúůýžÁÄČĎÉĚÍĹĽŇÓÔŔŠŤÚŮÝŽ]+">
+            </div>    
 
-    <label for="user_type">Typ používateľa:</label>
-    <select id="user_type" name="user_type" required>
-        <option value="admin">Admin</option>
-        <option value="veduci">Veduci</option>
-        <option value="student">Student</option>
-    </select>
+            <div class="form-group">    
+                <label for="username">Používateľské meno:</label>
+                <input type="text" id="username" name="username" class="form-control" required pattern="[a-zA-Z0-9]+">
+            </div>
 
-    <button type="submit" id="pridajPouzivatelaBtn">Pridaj používateľa</button>
-</form>
+            <div class="form-group">
+                <label for="password">Heslo:</label>
+                <input type="password" id="password" name="password" class="form-control" required pattern="[a-zA-Z0-9.,_-]+">
+            </div>
+
+            <div class="form-group">
+                <label for="user_type">Typ používateľa:</label>
+                <select id="user_type" name="user_type" required class="form-control">
+                    <option value="admin">Admin</option>
+                    <option value="veduci">Veduci</option>
+                    <option value="student">Student</option>
+                </select>
+            </div>
+
+            <button type="submit" id="pridajPouzivatelaBtn" class="btn btn-secondary" style="margin-bottom: 20px; margin-top: 20px">Pridaj používateľa</button>
+        </form>
+    </div>
+</div>
+
 
 </body>
 @endsection

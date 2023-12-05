@@ -14,3 +14,5 @@ Route::get('/pridaj', [YourController::class, 'pridaj'])->name('pridaj');
 Route::post('/pridaj-pouzivatela', [PouzivatelController::class, 'pridajPouzivatela'])->name('pridaj.pouzivatela');
 Route::get('/pridajUser', function(){return view('addPouzivatel');})->name('pridajuser');
 
+Route::get('/zobraz-uzivatele', [PouzivatelController::class, 'zobrazUzivatele'])->name('zobrazUzivatele');
+Route::delete('/odstran-uzivatele/{id}', [PouzivatelController::class, 'odstranUzivatele'])->name('odstranUzivatele');

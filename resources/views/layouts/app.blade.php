@@ -41,6 +41,20 @@
                             @endif
                         @endauth
                     </li>
+                    <li class="nav-item">
+                        @auth
+                            @if(Auth::user()->user_type == 'admin')
+                                <a href="{{ route('pridajuser') }}">Pridaj pouzivatela</a>
+                            @endif
+                        @endauth
+                    </li>
+                    <li class="nav-item">
+                        @auth
+                            @if(Auth::user()->user_type == 'admin')
+                                <a href="{{ route('zobrazUzivatele') }}">Zobraz pouzivatelov</a>
+                            @endif
+                        @endauth
+                    </li>
 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

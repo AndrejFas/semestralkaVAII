@@ -32,4 +32,18 @@ class PouzivatelController extends Controller
         return redirect()->back()->with('success', 'Používateľ bol úspešne pridaný.');
     }
 
+
+    public function zobrazUzivatele()
+    {
+        $users = User::all();
+        return view('zobrazUzivatele', compact('users'));
+    }
+
+    public function odstranUzivatele($id)
+    {
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        return redirect()->route('zobrazUzivatele')->with('success', 'Uživatel byl odstraněn.');
+    }
 }
