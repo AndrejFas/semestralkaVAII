@@ -59,6 +59,12 @@ body {
     margin-top: 1rem;
 }
 
+.card .card {
+    padding: 10px;
+    background-color: lightgray !important;
+    border: none;
+    border-color: transparent !important;
+}
 .card {
     padding: 10px;
     background-color: lightgray !important;
@@ -68,3 +74,18 @@ body {
 div .errorText {
     color: red;
 }
+
+div .form-group{
+    padding-bottom: 15px;
+
+}
+
+/* CSS z max šírkou oknka 768 */
+@media (max-width: 768px) {
+    .card {
+        width: 80% !important;
+        padding: 10px;
+        background-color: lightgray !important;
+        border: none;
+    }
+  }

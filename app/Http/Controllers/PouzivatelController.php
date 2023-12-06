@@ -59,8 +59,8 @@ class PouzivatelController extends Controller
     $request->validate([
         'first_name' => 'required|string',
         'last_name' => 'required|string',
-        'username' => 'required|string|unique:users',
-        'password' => 'nullable|string', // Ak chceš umožniť aktualizáciu hesla, inak môžeš nechať ako 'nullable'
+        'username' => 'nullable|string|unique:users',
+        'password' => 'nullable|string',
         'user_type' => 'required|in:admin,veduci,student',
     ]);
 
@@ -70,7 +70,7 @@ class PouzivatelController extends Controller
     $user->update([
         'first_name' => $request->input('first_name'),
         'last_name' => $request->input('last_name'),
-        'username' => $request->input('username'),
+        //'username' => $request->input('username'),
         'user_type' => $request->input('user_type'),
     ]);
 
@@ -78,6 +78,12 @@ class PouzivatelController extends Controller
     if ($request->filled('password')) {
         $user->update([
             'password' => bcrypt($request->input('password')),
+        ]);
+    }
+
+    if ($request->filled('username')) {
+        $user->update([
+            'username' => $request->input('username'),
         ]);
     }
 

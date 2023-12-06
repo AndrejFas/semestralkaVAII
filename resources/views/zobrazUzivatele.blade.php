@@ -13,7 +13,7 @@
                 
                     @foreach($users as $user)
                 
-                    <div class="card" style="background-color: white !important">
+                    <div class="card" style="background-color: white !important; margin-bottom: 15px;">
                         {{ $user->first_name }} {{ $user->last_name }} {{$user->username}} {{$user->user_type}}
                         <form action="{{ route('odstranUzivatele', $user->id) }}" method="POST" style="display:inline;">
                             @csrf

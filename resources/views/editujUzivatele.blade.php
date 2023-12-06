@@ -18,7 +18,7 @@
     
                 <div class="form-group">    
                     <label for="username">Používateľské meno:</label>
-                    <input type="text" id="username" name="username" class="form-control" required pattern="[a-zA-Z0-9]+" value="{{ $user->username }}">
+                    <input type="text" id="username" name="username" class="form-control" pattern="[a-zA-Z0-9]+" value="{{ $user->username }}">
                 </div>
     
                 <div class="form-group">
