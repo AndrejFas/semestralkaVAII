@@ -1,41 +1,32 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="card-body card mx-auto" style="display: block; width: 50rem">
-    <section class="container">
+<div class="row">
+    <div class="col-md-6 card mx-auto">
         <h4 class="center">Pridaj pracu</h4>
         <form action="" method="POST" class="white">
-            <div>
-                <div><label>Nazov</label></div>
-                <label>
-                    <input type="text" name="nazov" style="width: 46rem">
-                </label>
-                <div class="errorText"></div>
-            </div>
-            <div>
-                <div><label>Veduci</label></div>
-                <label>
-                    <input type="text" name="veduci" style="width: 46rem">
-                </label>
-                <div class="errorText"></div>
-            </div>
-            <div>
-                <div><label>Tutor</label></div>
-                <label>
-                    <input type="text" name="tutor" style="width: 46rem">
-                </label>
-            </div>
-            <div>
-                <div><label>Popis</label></div>
-                <label>
-                    <textarea rows="5" name="popis" style="width: 46rem;row"></textarea>
-                </label>
-                <div class="errorText"></div>
+            <div class="form-group">
+                <label for="nazovTemy">Názov témy</label>
+                <input type="text" name="nazovTemy" class="form-control">
             </div>
 
-            <label class="text">Katedra</label>
-            <div class="input-group">
-                <label for="katedra"></label>
+            <div class="form-group">
+                <label for="veduci">Vedúci</label>
+                <input type="text" name="veduci" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="tutor">Tútor</label>
+                <input type="text" name="tutor" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="popis">Popis</label>
+                <textarea rows="5" name="popis" class="form-control"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="popis">Katedra</label>
                 <select class="form-select" id="katedra">
                     <option value="KIS">KIS</option>
                     <option value="KI">KI</option>
@@ -46,19 +37,18 @@
                     <option value="KTK">KTK</option>
                 </select>
             </div>
+            
 
-            <label class="text">Stupen</label>
-            <div class="input-group">
-                <label for="stupen"></label>
+            <div class="form-group">
+                <label for="stupen">Stupeň</label>
                 <select class="form-select" id="stupen">
                     <option value="Bakalar">Bakalár</option>
                     <option value="Inzinier">Inžinier</option>
                 </select>
             </div>
 
-            <label class="text">Odbor</label>
-            <div class="input-group">
-                <label for="odbor"></label>
+            <div class="form-group">
+                <label for="odbor">Odbor</label>
                 <select class="form-select" id="odbor">
                     <option value="MAN">MAN</option>
                     <option value="INF">INF</option>
@@ -68,9 +58,8 @@
                 </select>
             </div>
 
-            <label class="text">Jazyk</label>
-            <div class="input-group">
-                <label for="jazyk"></label>
+            <div class="form-group">
+                <label for="jazyk">Jazyk</label>
                 <select class="form-select" id="jazyk">
                     <option selected>...</option>
                     <option value="sk">sk</option>
@@ -81,11 +70,11 @@
 
 
             <div>
-                <input type="submit" name="submit" value="Pridaj" style="align-content: center">
+                <button type="submit" class="btn btn-secondary" style="margin-bottom: 20px; margin-top: 20px" >Pridaj</button>
             </div>
 
         </form>
-    </section>
+    </div>
 </div>
 
 @endsection

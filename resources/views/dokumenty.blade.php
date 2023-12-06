@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="card mx-auto" style="width: 50rem;">
-    <div class="card-body">
+<div class="row">
+    <div class="col-md-6 card mx-auto">
         <h5 class="card-title">Linky</h5>
 
         <div>
@@ -17,8 +17,8 @@
     </div>
 </div>
 
-<div class="card mx-auto" style="width: 50rem;" >
-    <div class="card-body">
+<div class="row">
+    <div class="col-md-6 card mx-auto">
         <h5 class="card-title">Inštrukcie - Študent</h5>
         <div>
             <a href="https://isdiplomky.fri.uniza.sk/is_diplomky/dokumenty/22_23/august/informacia_pre_studenta_postup_odovzdavania_prac.pdf">Usmernenie pre študenta - AUGUST 2022/2023</a>
@@ -28,8 +28,8 @@
     </div>
 </div>
 
-<div class="card mx-auto" style="width: 50rem;">
-    <div class="card-body">
+<div class="row">
+    <div class="col-md-6 card mx-auto">
         <h5 class="card-title">Metodické pokyny</h5>
         <div><a href="https://isdiplomky.fri.uniza.sk/is_diplomky/dokumenty/techniky_citovania.doc">Techniky citovania</a></div>
         <div><a href="https://isdiplomky.fri.uniza.sk/is_diplomky/dokumenty/14_2009_R_Metodicke_usmernenie.docx">Metodické usmernenie MŠ</a></div>
