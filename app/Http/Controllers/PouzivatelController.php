@@ -46,4 +46,42 @@ class PouzivatelController extends Controller
 
         return redirect()->route('zobrazUzivatele')->with('success', 'Uživatel byl odstraněn.');
     }
+
+
+    public function editujUzivatela($id)
+    {
+        $user = User::findOrFail($id);
+        return view('editujUzivatele', compact('user'));
+    }
+
+    public function aktualizujUzivatela(Request $request, $id)
+{
+    $request->validate([
+        'first_name' => 'required|string',
+        'last_name' => 'required|string',
+        'username' => 'required|string|unique:users',
+        'password' => 'nullable|string', // Ak chceš umožniť aktualizáciu hesla, inak môžeš nechať ako 'nullable'
+        'user_type' => 'required|in:admin,veduci,student',
+    ]);
+
+    $user = User::findOrFail($id);
+
+    // Aktualizácia hodnôt
+    $user->update([
+        'first_name' => $request->input('first_name'),
+        'last_name' => $request->input('last_name'),
+        'username' => $request->input('username'),
+        'user_type' => $request->input('user_type'),
+    ]);
+
+    // Ak bol zadaný nový password, aktualizuj ho
+    if ($request->filled('password')) {
+        $user->update([
+            'password' => bcrypt($request->input('password')),
+        ]);
+    }
+
+    return redirect()->route('zobrazUzivatele')->with('success', 'Užívateľ bol aktualizovaný.');
+}
+
 }

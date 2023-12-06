@@ -10,20 +10,22 @@
 
 
             @if(count($users) > 0)
-                <ul>
+                
                     @foreach($users as $user)
-                        <li>
-                            <div class="card" style="background-color: white !important">
-                                {{ $user->first_name }} {{ $user->last_name }} {{$user->username}} {{$user->user_type}}
-                            <form action="{{ route('odstranUzivatele', $user->id) }}" method="POST" style="display:inline;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-secondary">Odstranit</button>
-                            </form>
-                            </div>                            
-                        </li>
+                
+                    <div class="card" style="background-color: white !important">
+                        {{ $user->first_name }} {{ $user->last_name }} {{$user->username}} {{$user->user_type}}
+                        <form action="{{ route('odstranUzivatele', $user->id) }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-secondary">Odstraniť</button>
+                            <a href="{{ route('editujUzivatela', $user->id) }}" class="btn btn-secondary">Upraviť</a>
+                        </form>
+                        
+                    </div>                            
+                
                     @endforeach
-                </ul>
+                
             @else
                 <p>Žádní uživatelé nebyli nalezeni.</p>
             @endif
