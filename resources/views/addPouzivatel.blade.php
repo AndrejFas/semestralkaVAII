@@ -2,7 +2,6 @@
 
 @section('content')
 
-<!-- Formulár na pridanie používateľa -->
 
 <div class="row">
     <div class="col-md-6 card mx-auto">

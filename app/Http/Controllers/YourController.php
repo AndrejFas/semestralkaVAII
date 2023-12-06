@@ -18,10 +18,10 @@ class YourController extends Controller
         return view('home');
     }
 
-    public function authenticate(Request $request)
-    {
-        // Vaša autentifikačná logika
-    }
+    //public function authenticate(Request $request)
+    //{
+    //    
+    //}
 
     public function pridaj()
     {
@@ -48,7 +48,7 @@ class YourController extends Controller
         }
     }
 
-    // Ak nie je prihlásený, môžete presmerovať na login alebo vykonať inú akciu
+    // Ak nie je prihlásený, presmerovať na login
     return redirect()->route('login');
 }
 
