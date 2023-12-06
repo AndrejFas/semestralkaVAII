@@ -31,7 +31,7 @@
                     </li>
                     @auth
                     <li class="nav-item">
-                        <a href="#">Dokumenty</a>
+                        <a href="{{ route('dokumenty') }}">Dokumenty</a>
                     </li>
 
                     <li class="nav-item">
@@ -61,7 +61,7 @@
                             Témy
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Záverečné práce</a></li>
+                            <li><a class="dropdown-item" href="{{route('prace')}}">Záverečné práce</a></li>
                             <li><a class="dropdown-item" href="#">Priradená téma</a></li>
                             <li><a class="dropdown-item" href="#">Informácie o štátnej skúške</a></li>
                             <li><a class="dropdown-item" href="#">Odovzdávanie súborov</a></li>
@@ -73,11 +73,12 @@
 
                 <div class="login">
                     
-                        <i class="bi bi-person-circle"></i>
+                        
                         <span>{{ auth()->user()->name }}</span>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
-                            <button type="submit" class="btn btn-link">Logout</button>
+                            <i class="bi bi-person-circle"></i>
+                            <button type="submit" class="btn btn-warning">Logout</button>
                         </form>
                     
                     @endauth

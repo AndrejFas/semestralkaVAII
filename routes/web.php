@@ -10,7 +10,14 @@ Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login/authenticate', [LoginController::class, 'authenticate'])->name('login.authenticate');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
  
-Route::get('/pridaj', [YourController::class, 'pridaj'])->name('pridaj');
+Route::get('/dokumenty', function(){return view('dokumenty');})->name('dokumenty');
+Route::get('/prace', function(){return view('prace');})->name('prace');
+
+//admin a veduci
+Route::middleware(['auth', 'admin', 'veduci'])->group(function () {
+    Route::get('/pridaj', [YourController::class, 'pridaj'])->name('pridaj');
+    
+});
 
 //admin only
 Route::middleware(['auth', 'admin'])->group(function () {
