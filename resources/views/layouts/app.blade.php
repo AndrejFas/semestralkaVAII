@@ -62,9 +62,17 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{{route('prace')}}">Záverečné práce</a></li>
-                            <li><a class="dropdown-item" href="#">Priradená téma</a></li>
+                            @auth
+                                @if(Auth::user()->user_type == 'student')
+                                    <li><a class="dropdown-item" href="#">Priradená téma</a></li>
+                                @endif
+                            @endauth
                             <li><a class="dropdown-item" href="#">Informácie o štátnej skúške</a></li>
-                            <li><a class="dropdown-item" href="#">Odovzdávanie súborov</a></li>
+                            @auth
+                                @if(Auth::user()->user_type == 'student')
+                                    <li><a class="dropdown-item" href="{{route('editFiles')}}">Odovzdávanie súborov</a></li>
+                                    @endif
+                            @endauth
                         </ul>
                     </li>
                     

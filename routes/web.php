@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\YourController;
+use App\Http\Controllers\FileController;
 use App\Http\Controllers\PouzivatelController;
 
 
@@ -12,6 +13,24 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
  
 Route::get('/dokumenty', function(){return view('dokumenty');})->name('dokumenty');
 Route::get('/prace', function(){return view('prace');})->name('prace');
+
+
+//student
+Route::middleware(['auth', 'student'])->group(function () {
+    Route::get('/edit-files', [FileController::class, 'editFilesView'])->name('editFiles');
+
+    Route::post('/edit-pdf-text', [FileController::class, 'editPdfText'])->name('editPdfText');
+    Route::get('/download-pdf-text', [FileController::class, 'downloadPdfText'])->name('downloadPdfText');
+    Route::post('/delete-pdf-text', [FileController::class, 'deletePdfText'])->name('deletePdfText');
+
+    Route::post('/edit-zip-prilohy', [FileController::class, 'editZipPrilohy'])->name('editZipPrilohy');
+    Route::get('/download-zip-prilohy', [FileController::class, 'downloadZipPrilohy'])->name('downloadZipPrilohy');
+    Route::post('/delete-zip-prilohy', [FileController::class, 'deleteZipPrilohy'])->name('deleteZipPrilohy');
+
+    Route::post('/edit-pdf-originalita', [FileController::class, 'editPdfOriginalita'])->name('editPdfOriginalita');
+    Route::get('/download-pdf-originalita', [FileController::class, 'downloadPdfOriginalita'])->name('downloadPdfOriginalita');
+    Route::post('/delete-pdf-originalita', [FileController::class, 'deletePdfOriginalita'])->name('deletePdfOriginalita');
+});
 
 //admin a veduci
 Route::middleware(['auth', 'admin', 'veduci'])->group(function () {

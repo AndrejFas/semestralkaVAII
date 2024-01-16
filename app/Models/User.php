@@ -10,6 +10,11 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    public function file()
+    {
+        return $this->hasOne(File::class, 'student_id');
+    }
+
     protected $table = 'users';
 
     /**

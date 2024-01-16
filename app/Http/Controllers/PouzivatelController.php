@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User; // prípadne prispôsobte podľa vášho modelu
+use App\Models\User;
+use App\Models\File;
 
 class PouzivatelController extends Controller
 {
@@ -20,13 +21,23 @@ class PouzivatelController extends Controller
         ]);
 
         // vytvorenie nového používateľa v databáze
-        User::create([
+        $user = User::create([
             'first_name' => $request->input('first_name'),
             'last_name' => $request->input('last_name'),
             'username' => $request->input('username'),
             'password' => bcrypt($request->input('password')),
             'user_type' => $request->input('user_type'),
         ]);
+
+        // Ak je typ používateľa "student", vytvorí nový záznam v tabuľke "files"
+        if ($user->user_type === 'student') {
+            $file = File::create([
+                'student_id' => $user->id,
+                'pdf_text' => null,
+                'zip_prilohy' => null,
+                'pdf_originalita' => null,
+            ]);
+        }
 
         // prípadne môžete pridať ďalšie úpravy alebo presmerovanie
         return redirect()->route('showUser')->with('success', 'Používateľ bol úspešne pridaný.');
