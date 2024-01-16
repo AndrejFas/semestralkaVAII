@@ -66,39 +66,39 @@ class PouzivatelController extends Controller
     }
 
     public function refreshUser(Request $request, $id)
-{
-    $request->validate([
-        'first_name' => 'required|string',
-        'last_name' => 'required|string',
-        'username' => 'nullable|string|unique:users',
-        'password' => 'nullable|string',
-        'user_type' => 'required|in:admin,veduci,student',
-    ]);
-
-    $user = User::findOrFail($id);
-
-    // Aktualizácia hodnôt
-    $user->update([
-        'first_name' => $request->input('first_name'),
-        'last_name' => $request->input('last_name'),
-        //'username' => $request->input('username'),
-        'user_type' => $request->input('user_type'),
-    ]);
-
-    // Ak bol zadaný nový password, aktualizuj ho
-    if ($request->filled('password')) {
-        $user->update([
-            'password' => bcrypt($request->input('password')),
+    {
+        $request->validate([
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
+            'username' => 'nullable|string|unique:users',
+            'password' => 'nullable|string',
+            'user_type' => 'required|in:admin,veduci,student',
         ]);
-    }
 
-    if ($request->filled('username')) {
+        $user = User::findOrFail($id);
+
+        // Aktualizácia hodnôt
         $user->update([
-            'username' => $request->input('username'),
+            'first_name' => $request->input('first_name'),
+            'last_name' => $request->input('last_name'),
+            //'username' => $request->input('username'),
+            'user_type' => $request->input('user_type'),
         ]);
-    }
 
-    return redirect()->route('showUser')->with('success', 'Užívateľ bol aktualizovaný.');
-}
+        // Ak bol zadaný nový password, aktualizuj ho
+        if ($request->filled('password')) {
+            $user->update([
+                'password' => bcrypt($request->input('password')),
+            ]);
+        }
+
+        if ($request->filled('username')) {
+            $user->update([
+                'username' => $request->input('username'),
+            ]);
+        }
+
+        return redirect()->route('showUser')->with('success', 'Užívateľ bol aktualizovaný.');
+    }
 
 }

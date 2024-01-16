@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\YourController;
+use App\Http\Controllers\JobController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\PouzivatelController;
 
@@ -34,8 +34,12 @@ Route::middleware(['auth', 'student'])->group(function () {
 
 //admin a veduci
 Route::middleware(['auth', 'admin', 'veduci'])->group(function () {
-    Route::get('/pridaj', [YourController::class, 'pridaj'])->name('pridaj');
-    
+    Route::get('/add-job-view', function(){return view('addPracu');})->name('addJobView');
+    Route::post('/add-job', [JobController::class, 'addJob'])->name('addJob');
+    Route::delete('/delete-job/{id}', [JobController::class, 'deleteJob'])->name('deleteJob');
+    Route::get('/show-job', [JobController::class, 'showJob'])->name('showJob');
+    Route::get('/edit-job/{id}', [JobController::class, 'editJob'])->name('editJob');
+    Route::put('/refresh-job/{id}', [JobController::class, 'refreshJob'])->name('refreshJob');
 });
 
 //admin only

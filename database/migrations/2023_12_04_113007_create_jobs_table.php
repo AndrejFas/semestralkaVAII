@@ -17,15 +17,15 @@ return new class extends Migration
 
             $table->string('nazov',20);
             $table->string('veduci',20);
-            $table->string('tutor',20);
+            $table->string('tutor',20)->nullable();
             $table->string('student',20)->nullable();
             $table->text('popis');
             $table->date('cas');
             $table->string('katedra',10);
             $table->string('odbor',10);
             $table->string('jazyk',2)->nullable();
-            $table->integer('stupen');
-            $table->integer('stav');
+            $table->string('stupen');
+            $table->string('stav');
             
 
         });

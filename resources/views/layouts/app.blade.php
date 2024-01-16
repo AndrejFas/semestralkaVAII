@@ -37,7 +37,7 @@
                     <li class="nav-item">
                         @auth
                             @if(Auth::user()->user_type == 'admin' || Auth::user()->user_type == 'veduci')
-                                <a href="{{ route('pridaj') }}">Pridaj</a>
+                                <a href="{{ route('addJobView') }}">Pridaj pracu</a>
                             @endif
                         @endauth
                     </li>

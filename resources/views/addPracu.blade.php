@@ -4,10 +4,11 @@
 <div class="row">
     <div class="col-md-6 card mx-auto">
         <h4 class="center">Pridaj pracu</h4>
-        <form action="" method="POST" class="white">
+        <form id="pridajPracuForm" action="{{ route('addJob') }}" method="POST" class="white">
+            @csrf
             <div class="form-group">
                 <label for="nazovTemy">Názov témy</label>
-                <input type="text" name="nazovTemy" class="form-control">
+                <input type="text" name="nazov" class="form-control">
             </div>
 
             <div class="form-group">
@@ -27,7 +28,7 @@
 
             <div class="form-group">
                 <label for="popis">Katedra</label>
-                <select class="form-select" id="katedra">
+                <select class="form-select" name="katedra">
                     <option value="KIS">KIS</option>
                     <option value="KI">KI</option>
                     <option value="KMME">KMME</option>
@@ -41,7 +42,7 @@
 
             <div class="form-group">
                 <label for="stupen">Stupeň</label>
-                <select class="form-select" id="stupen">
+                <select class="form-select" name="stupen">
                     <option value="Bakalar">Bakalár</option>
                     <option value="Inzinier">Inžinier</option>
                 </select>
@@ -49,7 +50,7 @@
 
             <div class="form-group">
                 <label for="odbor">Odbor</label>
-                <select class="form-select" id="odbor">
+                <select class="form-select" name="odbor">
                     <option value="MAN">MAN</option>
                     <option value="INF">INF</option>
                     <option value="IaST">IaST</option>
@@ -60,8 +61,8 @@
 
             <div class="form-group">
                 <label for="jazyk">Jazyk</label>
-                <select class="form-select" id="jazyk">
-                    <option selected>...</option>
+                <select class="form-select" name="jazyk">
+                    <option selected>..</option>
                     <option value="sk">sk</option>
                     <option value="en">en</option>
                 </select>
@@ -70,11 +71,13 @@
 
 
             <div>
-                <button type="submit" class="btn btn-secondary" style="margin-bottom: 20px; margin-top: 20px" >Pridaj</button>
+                <button type="submit" id="pridajPracuBtn" class="btn btn-secondary" style="margin-bottom: 20px; margin-top: 20px" >Pridaj</button>
             </div>
 
         </form>
     </div>
 </div>
+@if($errors->any())
+@endif
 
 @endsection
