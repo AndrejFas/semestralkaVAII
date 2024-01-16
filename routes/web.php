@@ -21,10 +21,10 @@ Route::middleware(['auth', 'admin', 'veduci'])->group(function () {
 
 //admin only
 Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/pridajUser', function(){return view('addPouzivatel');})->name('pridajuser');
-    Route::post('/pridaj-pouzivatela', [PouzivatelController::class, 'pridajPouzivatela'])->name('pridaj.pouzivatela');
-    Route::delete('/odstran-uzivatele/{id}', [PouzivatelController::class, 'odstranUzivatele'])->name('odstranUzivatele');
-    Route::get('/zobraz-uzivatele', [PouzivatelController::class, 'zobrazUzivatele'])->name('zobrazUzivatele');
-    Route::get('/edituj-uzivatele/{id}', [PouzivatelController::class, 'editujUzivatela'])->name('editujUzivatela');
-    Route::put('/aktualizuj-uzivatele/{id}', [PouzivatelController::class, 'aktualizujUzivatela'])->name('aktualizujUzivatela');
+    Route::get('/add-user-view', function(){return view('addPouzivatel');})->name('addUserView');
+    Route::post('/add-user', [PouzivatelController::class, 'addUser'])->name('addUser');
+    Route::delete('/delete-user/{id}', [PouzivatelController::class, 'deleteUser'])->name('deleteUser');
+    Route::get('/show-user', [PouzivatelController::class, 'showUser'])->name('showUser');
+    Route::get('/edit-user/{id}', [PouzivatelController::class, 'editUser'])->name('editUser');
+    Route::put('/refresh-user/{id}', [PouzivatelController::class, 'refreshUser'])->name('refreshUser');
 });

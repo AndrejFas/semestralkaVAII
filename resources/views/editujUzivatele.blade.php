@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-md-6 card mx-auto">
             <h5 class="text-center">Upraviť používateľa</h5>
-            <form action="{{ route('aktualizujUzivatela', $user->id) }}" method="POST">
+            <form action="{{ route('refreshUser', $user->id) }}" method="POST">
                 @csrf
                 @method('PUT')
                 <div class="form-group">

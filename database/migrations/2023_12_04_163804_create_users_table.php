@@ -29,7 +29,7 @@ return new class extends Migration
             'first_name' => 'Admin',
             'last_name' => 'User',
             'username' => 'admin',
-            'password' => bcrypt('admin_password'),
+            'password' => bcrypt('admin'),
             'user_type' => 'admin',
             'created_at' => now(),
             'updated_at' => now(),

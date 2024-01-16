@@ -7,7 +7,7 @@ use App\Models\User; // prípadne prispôsobte podľa vášho modelu
 
 class PouzivatelController extends Controller
 {
-    public function pridajPouzivatela(Request $request)
+    public function addUser(Request $request)
     {
 
         // validácia dát
@@ -29,32 +29,32 @@ class PouzivatelController extends Controller
         ]);
 
         // prípadne môžete pridať ďalšie úpravy alebo presmerovanie
-        return redirect()->back()->with('success', 'Používateľ bol úspešne pridaný.');
+        return redirect()->route('showUser')->with('success', 'Používateľ bol úspešne pridaný.');
     }
 
 
-    public function zobrazUzivatele()
+    public function showUser()
     {
         $users = User::all();
         return view('zobrazUzivatele', compact('users'));
     }
 
-    public function odstranUzivatele($id)
+    public function deleteUser($id)
     {
         $user = User::findOrFail($id);
         $user->delete();
 
-        return redirect()->route('zobrazUzivatele')->with('success', 'Uživatel byl odstraněn.');
+        return redirect()->route('showUser')->with('success', 'Uživatel byl odstraněn.');
     }
 
 
-    public function editujUzivatela($id)
+    public function editUser($id)
     {
         $user = User::findOrFail($id);
         return view('editujUzivatele', compact('user'));
     }
 
-    public function aktualizujUzivatela(Request $request, $id)
+    public function refreshUser(Request $request, $id)
 {
     $request->validate([
         'first_name' => 'required|string',
@@ -87,7 +87,7 @@ class PouzivatelController extends Controller
         ]);
     }
 
-    return redirect()->route('zobrazUzivatele')->with('success', 'Užívateľ bol aktualizovaný.');
+    return redirect()->route('showUser')->with('success', 'Užívateľ bol aktualizovaný.');
 }
 
 }

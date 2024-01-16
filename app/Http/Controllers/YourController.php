@@ -25,7 +25,7 @@ class YourController extends Controller
 
     public function pridaj()
     {
-        return view('add');
+        return view('addPracu');
     }
 
 

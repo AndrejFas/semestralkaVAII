@@ -44,14 +44,14 @@
                     <li class="nav-item">
                         @auth
                             @if(Auth::user()->user_type == 'admin')
-                                <a href="{{ route('pridajuser') }}">Pridaj pouzivatela</a>
+                                <a href="{{ route('addUserView') }}">Pridaj pouzivatela</a>
                             @endif
                         @endauth
                     </li>
                     <li class="nav-item">
                         @auth
                             @if(Auth::user()->user_type == 'admin')
-                                <a href="{{ route('zobrazUzivatele') }}">Zobraz pouzivatelov</a>
+                                <a href="{{ route('showUser') }}">Zobraz pouzivatelov</a>
                             @endif
                         @endauth
                     </li>

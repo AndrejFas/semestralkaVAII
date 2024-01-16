@@ -5,7 +5,7 @@
 
 <div class="row">
     <div class="col-md-6 card mx-auto">
-        <form id="pridajPouzivatelaForm" action="{{ route('pridaj.pouzivatela') }}" method="POST">
+        <form id="pridajPouzivatelaForm" action="{{ route('addUser') }}" method="POST">
             @csrf
 
             <div class="form-group">
