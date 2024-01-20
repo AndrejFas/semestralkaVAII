@@ -119,7 +119,7 @@
     @foreach($jobs as $job)
         <div class="row jobResults">
             <div class="col-md-6 card mx-auto">
-                <a href="{{ route('job.details', ['id' => $job->id]) }}">{{$job->odbor}} - {{$job->nazov}}</a>
+                <a href="{{ route('jobDetails', ['id' => $job->id]) }}">{{$job->odbor}} - {{$job->nazov}}</a>
                 <p>Vedúci: {{$job->veduci}}</p>
                 <p>{!! nl2br(e(Str::limit($job->popis, 300))) !!}</p> {{-- Adjust the character limit as needed --}}
                 <p>Stav: {{$job->stav}} </p>
@@ -133,15 +133,7 @@
 
 
 <script src="{{ asset('js/filterScript.js') }}"></script>
-<script>var jobDetailsBaseUrl = '{{ route('job.details', ['id' => '0']) }}';</script>
+<script>var jobDetailsBaseUrl = '{{ route('jobDetails', ['id' => '0']) }}';</script>
 
 
 @endsection
-
-
-{{-- <form action="{{ route('deleteUser', $user->id) }}" method="POST" style="display:inline;">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-secondary">Odstrániť</button>
-                <a href="{{ route('editUser', $user->id) }}" class="btn btn-secondary">Upraviť</a>
-            </form> --}}
