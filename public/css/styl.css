@@ -84,6 +84,36 @@ div .row {
     margin: auto;
 }
 
+.pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin-top: 5px;
+}
+
+.pagination li {
+    margin: 0 5px;
+}
+
+.pagination a {
+    text-decoration: none;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.pagination .active a {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.pagination .disabled a {
+    pointer-events: none;
+    background-color: #ddd;
+    color: #777;
+}
+
 /* CSS z max šírkou oknka 768 */
 @media (max-width: 768px) {
     .card {

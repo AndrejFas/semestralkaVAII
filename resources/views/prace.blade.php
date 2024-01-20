@@ -127,6 +127,28 @@
         </div>
     @endforeach
 
+
+    @if ($jobs->lastPage() > 1)
+    
+    <div class="posuvnik text-center">
+        <ul class="pagination">
+            <li class="{{ ($jobs->currentPage() == 1) ? ' disabled' : '' }}">
+                <a href="{{ $jobs->url(1) }}" class="btn btn-secondary">Previous</a>
+            </li>
+            @for ($i = 1; $i <= $jobs->lastPage(); $i++)
+                <li class="{{ ($jobs->currentPage() == $i) ? ' active' : '' }}">
+                    <a href="{{ $jobs->url($i) }}" class="btn btn-secondary">{{ $i }}</a>
+                </li>
+            @endfor
+            <li class="{{ ($jobs->currentPage() == $jobs->lastPage()) ? ' disabled' : '' }}">
+                <a href="{{ $jobs->url($jobs->currentPage() + 1) }}" class="btn btn-secondary">Next</a>
+            </li>
+        </ul>
+    </div>
+
+        
+    @endif
+
 @else
     <p>Neboli nájdene žiadne</p>
 @endif

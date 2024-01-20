@@ -62,7 +62,7 @@
             <div class="form-group">
                 <label for="jazyk">Jazyk</label>
                 <select class="form-select" name="jazyk">
-                    <option selected>..</option>
+                    <option selected></option>
                     <option value="sk">sk</option>
                     <option value="en">en</option>
                 </select>

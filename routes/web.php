@@ -13,10 +13,11 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
  
 Route::get('/dokumenty', function(){return view('dokumenty');})->name('dokumenty');
 Route::get('/prace', [JobController::class, 'showJobView'])->name('prace');
-Route::post('/jobs/filter', [JobController::class, 'filterFilter'])->name('job.filter');
+Route::post('/jobs/filter', [JobController::class, 'filterJobs'])->name('job.filter');
 Route::get('/job-details/{id}', [JobController::class, 'jobDetails'])->name('jobDetails');
 
-
+Route::post('/apply', [JobController::class, 'apply'])->name('apply');
+Route::post('/withdraw', [JobController::class, 'withdraw'])->name('withdraw');
 
 //student
 Route::middleware(['auth', 'student'])->group(function () {

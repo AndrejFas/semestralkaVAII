@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Job;
-use Illuminate\Support\Facades\Log;
+use App\Models\Applier;
 
 class JobController extends Controller
 {
@@ -82,13 +82,12 @@ class JobController extends Controller
     }
 
     public function showJobView(Request $request){
-        $jobs = Job::all(); // Assuming 'File' is your Eloquent model for the 'files' table
-        return view('prace',['jobs' => $jobs]);
+        $jobs = Job::paginate(5); // 5 jobs per page, adjust as needed
+        return view('prace', ['jobs' => $jobs]);
     }
 
-    public function filterFilter(Request $request)
+    public function filterJobs(Request $request)
     {
-        Log::info('Received request:', $request->all());
 
         $query = Job::query();
 
@@ -138,5 +137,37 @@ class JobController extends Controller
         $job = Job::findOrFail($id); // Adjust the model and method based on your project
         return view('jobDetails', ['job' => $job]);
     }
+
+    public function apply(Request $request)
+    {
+        // Get the authenticated student ID
+        $studentId = auth()->user()->id;
+
+        // Create a record in the 'zaujemcovia' table
+        Applier::create([
+            'tema' => $request->input('tema'),
+            'student' => $studentId,
+        ]);
+
+        // You can return a response if needed
+        return back();
+    }
+
+
+    public function withdraw(Request $request)
+{
+    // Get the authenticated student ID
+    $studentId = auth()->user()->id;
+
+    // Get the tema (job ID) from the form
+    $tema = $request->input('tema');
+
+    // Find and delete the record in the 'zaujemcovia' table
+    Applier::where('tema', $tema)->where('student', $studentId)->delete();
+
+    // You can return a response if needed
+    return back();
+}
+    
 
 }
