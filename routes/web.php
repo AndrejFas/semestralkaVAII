@@ -12,7 +12,8 @@ Route::post('/login/authenticate', [LoginController::class, 'authenticate'])->na
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
  
 Route::get('/dokumenty', function(){return view('dokumenty');})->name('dokumenty');
-Route::get('/prace', function(){return view('prace');})->name('prace');
+Route::get('/prace', [JobController::class, 'showJobView'])->name('prace');
+Route::post('/jobs/filter', [JobController::class, 'filterFilter'])->name('job.filter');;
 
 
 //student

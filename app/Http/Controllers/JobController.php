@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Job;
+use Illuminate\Support\Facades\Log;
 
 class JobController extends Controller
 {
@@ -12,7 +13,7 @@ class JobController extends Controller
         $request->validate([
             'nazov' => 'required|string',
             'veduci' => 'required|string',
-            'popis' => 'required|string',
+            'popis' => 'required',
             'stupen' => 'required|string',
             'odbor' => 'required|string',
             'katedra' => 'required|string',
@@ -58,7 +59,7 @@ class JobController extends Controller
         $request->validate([
             'nazov' => 'required|string',
             'veduci' => 'required|string',
-            'popis' => 'required|string',
+            'popis' => 'required',
             'stupen' => 'required|string',
             'odbor' => 'required|string',
             'katedra' => 'required|string',
@@ -78,6 +79,58 @@ class JobController extends Controller
             'cas' => now(),
         ]);
         return redirect()->route('showUser')->with('success', 'Užívateľ bol aktualizovaný.');
+    }
+
+    public function showJobView(Request $request){
+        $jobs = Job::all(); // Assuming 'File' is your Eloquent model for the 'files' table
+        return view('prace',['jobs' => $jobs]);
+    }
+
+    public function filterFilter(Request $request)
+    {
+        Log::info('Received request:', $request->all());
+
+        $query = Job::query();
+
+        // Nazov
+        if ($request->filled('nazov')) {
+            $query->where('nazov', 'LIKE', '%' . $request->input('nazov') . '%');
+        }
+        // veduci
+        if ($request->filled('meno')) {
+            $query->where(function ($query) use ($request) {
+                $query->where('veduci', 'LIKE', '%' . $request->input('meno') . '%')
+                      ->orWhere('tutor', 'LIKE', '%' . $request->input('meno') . '%');
+            });
+        }
+        // obsah
+        if ($request->filled('obsah')) {
+            $query->where('popis', 'LIKE', '%' . $request->input('obsah') . '%');
+        }
+        // stupen
+        if ($request->filled('stupen')) {
+            $query->where('stupen', $request->input('stupen'));
+        }
+        // stav
+        if ($request->filled('stav')) {
+            $query->where('stav', $request->input('stav'));
+        }
+        // odbor
+        if ($request->filled('odbor')) {
+            $query->where('odbor', $request->input('odbor'));
+        }
+        // katedra
+        if ($request->filled('katedra')) {
+            $query->where('katedra', $request->input('katedra'));
+        }
+        // jazyk
+        if ($request->filled('jazyk')) {
+            $query->where('jazyk', $request->input('jazyk'));
+        }
+
+        $filteredJobs = $query->get();
+
+        return response()->json(['jobs' => $filteredJobs]);
     }
 
 }

@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
 
-            $table->string('nazov',20);
-            $table->string('veduci',20);
+            $table->string('nazov',50);
+            $table->string('veduci',30);
             $table->string('tutor',20)->nullable();
             $table->string('student',20)->nullable();
             $table->text('popis');
