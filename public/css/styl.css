@@ -80,6 +80,10 @@ div .form-group{
 
 }
 
+div .row {
+    margin: auto;
+}
+
 /* CSS z max šírkou oknka 768 */
 @media (max-width: 768px) {
     .card {

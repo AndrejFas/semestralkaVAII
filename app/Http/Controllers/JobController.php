@@ -133,4 +133,10 @@ class JobController extends Controller
         return response()->json(['jobs' => $filteredJobs]);
     }
 
+    public function jobDetails($id)
+    {
+        $job = Job::findOrFail($id); // Adjust the model and method based on your project
+        return view('jobDetails', ['job' => $job]);
+    }
+
 }

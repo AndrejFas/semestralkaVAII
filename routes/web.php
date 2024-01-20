@@ -13,7 +13,9 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
  
 Route::get('/dokumenty', function(){return view('dokumenty');})->name('dokumenty');
 Route::get('/prace', [JobController::class, 'showJobView'])->name('prace');
-Route::post('/jobs/filter', [JobController::class, 'filterFilter'])->name('job.filter');;
+Route::post('/jobs/filter', [JobController::class, 'filterFilter'])->name('job.filter');
+Route::get('/job-details/{id}', [JobController::class, 'jobDetails'])->name('jobDetails');
+
 
 
 //student
@@ -52,3 +54,6 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/edit-user/{id}', [PouzivatelController::class, 'editUser'])->name('editUser');
     Route::put('/refresh-user/{id}', [PouzivatelController::class, 'refreshUser'])->name('refreshUser');
 });
+
+
+

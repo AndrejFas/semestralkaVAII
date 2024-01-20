@@ -23,7 +23,12 @@ document.getElementById('filterButton').addEventListener('click', function () {
                     // Create a new job card
                     var jobCard = document.createElement('div');
                     jobCard.className = 'col-md-6 card mx-auto';
-                    jobCard.innerHTML = '<a href="">' + job.odbor + ' - ' + job.nazov + '</a>' +
+                    
+                    // Generate the job details URL using the base URL and job ID
+                    var jobDetailsUrl = jobDetailsBaseUrl + job.id;
+
+                    // Create the anchor tag with the generated URL
+                    jobCard.innerHTML = '<a href="' + jobDetailsUrl + '">' + job.odbor + ' - ' + job.nazov + '</a>' +
                         '<p>Vedúci: ' + job.veduci + '</p>' +
                         '<p>' + limitCharacters(job.popis, 300) + '</p>' + // Limit characters for job description
                         '<p>Stav: ' + job.stav + '</p>';
