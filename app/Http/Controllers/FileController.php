@@ -8,15 +8,12 @@ use Illuminate\Support\Facades\Storage;
 
 class FileController extends Controller
 {
-    
     public function editFilesView()
     {
         $studentId = auth()->id();
         $file = File::where('student_id', $studentId)->first();
 
-        // Získať cestu k PDF súboru
-        $pdfTextPath = $file ? Storage::url('pdf_texts/' . $file->pdf_text) : null;
-
+        $pdfTextPath = $file ? Storage::url('pdf_texts/' . $file->pdf_text) : null; // cesta k PDF
         return view('editFiles', ['pdfTextPath' => $pdfTextPath]);
     }
 
@@ -25,11 +22,9 @@ class FileController extends Controller
         $studentId = auth()->id();
         $file = $request->file('pdf_text');
 
-        // Uložte súbor na disk (používam storage disk s názvom 'pdf_texts')
-        $filePath = $file->storeAs('pdf_texts', $studentId . '_pdf_text.pdf');
+        $filePath = $file->storeAs('pdf_texts', $studentId . '_pdf_text.pdf'); // súbor na sa ulozi
 
-        // Uložte názov súboru do databázy pre konkrétny záznam
-        File::where('student_id', $studentId)->update([
+        File::where('student_id', $studentId)->update([ // ulozi sa odkaz do DB
             'pdf_text' => $filePath,
         ]);
 
@@ -57,12 +52,9 @@ class FileController extends Controller
 
         if ($file && $file->pdf_text &&  Storage::exists($file->pdf_text)) {
             Storage::delete($file->pdf_text);
-
-            // Aktualizujte databázu a odstráňte cestu k súboru
             File::where('student_id', $studentId)->update([
                 'pdf_text' => null,
             ]);
-
             return redirect()->route('editFiles')->with('success', 'PDF Text bol úspešne odstránený.');
         } else {
             return redirect()->route('editFiles')->with('failure', 'Súbor neexistuje.');
@@ -73,15 +65,13 @@ class FileController extends Controller
     {
         $studentId = auth()->id();
         $file = $request->file('zip_prilohy');
-
-
         $filePath = $file->storeAs('zip_prilohy', $studentId . '_zip_prilohy.zip');
 
         File::where('student_id', $studentId)->update([
             'zip_prilohy' => $filePath,
         ]);
 
-        return redirect()->route('editFiles')->with('success', 'Zip Prilohy bol úspešne aktualizovaný.');
+        return redirect()->route('editFiles')->with('success', 'Zip Prilohy boli úspešne aktualizovane.');
     }
 
     public function downloadZipPrilohy($id)
@@ -105,13 +95,11 @@ class FileController extends Controller
 
         if ($file && $file->zip_prilohy &&  Storage::exists($file->zip_prilohy)) {
             Storage::delete($file->zip_prilohy);
-
-            // Aktualizujte databázu a odstráňte cestu k súboru
             File::where('student_id', $studentId)->update([
                 'zip_prilohy' => null,
             ]);
 
-            return redirect()->route('editFiles')->with('success', 'Zip Prilohy bol úspešne odstránený.');
+            return redirect()->route('editFiles')->with('success', 'Zip Prilohy boli úspešne odstránene.');
         } else {
             return redirect()->route('editFiles')->with('failure', 'Súbor neexistuje.');
         }
@@ -121,7 +109,6 @@ class FileController extends Controller
     {
         $studentId = auth()->id();
         $file = $request->file('pdf_originalita');
-
         $filePath = $file->storeAs('pdf_originalita', $studentId . '_pdf_originalita.pdf');
 
         File::where('student_id', $studentId)->update([
@@ -153,7 +140,6 @@ class FileController extends Controller
         if ($file && $file->pdf_originalita &&  Storage::exists($file->pdf_originalita)) {
             Storage::delete($file->pdf_originalita);
 
-            // Aktualizujte databázu a odstráňte cestu k súboru
             File::where('student_id', $studentId)->update([
                 'pdf_originalita' => null,
             ]);

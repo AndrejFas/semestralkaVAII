@@ -4,7 +4,6 @@
 <div class="row">
     <div class="col-md-6 card mx-auto">
         <h5 class="card-title">Linky</h5>
-
         <div>
             <a href="https://nic.uniza.sk/nms/main/index/main" >LDAP uniza</a>
             <p style="margin: 0;display: inline; float: right;" >Vytvorte/zmeňte si LDAP heslo na prihlásenie do systému EZP.</p>

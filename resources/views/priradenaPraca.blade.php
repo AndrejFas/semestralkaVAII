@@ -2,17 +2,11 @@
 
 @section('content')
     <div class="col-md-6 card mx-auto">
-        
-
-        
-
-            <!-- Check if the job is assigned to the current user -->
             @php
                 $assignedJob = \App\Models\Job::where('student', Auth::user()->id)->first();
             @endphp
 
             @if($assignedJob)
-                <!-- Display information about the assigned job -->
                 <div class="assigned-job-info">
                     <h2>Priradená práca:</h2>
                     <h1>{{ $assignedJob->odbor }} - {{ $assignedJob->nazov }}</h1>

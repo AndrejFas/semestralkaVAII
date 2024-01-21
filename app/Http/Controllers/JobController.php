@@ -88,16 +88,15 @@ class JobController extends Controller
     }
 
     public function showJobView(Request $request){
-        $jobs = Job::paginate(5); // 5 jobs per page, adjust as needed
+        $jobs = Job::paginate(5); 
         return view('prace', ['jobs' => $jobs]);
     }
 
     public function filterJobs(Request $request)
     {
-
         $query = Job::query();
 
-        // Nazov
+        // nazov
         if ($request->filled('nazov')) {
             $query->where('nazov', 'LIKE', '%' . $request->input('nazov') . '%');
         }
@@ -140,65 +139,48 @@ class JobController extends Controller
 
     public function jobDetails($id)
     {
-        $job = Job::findOrFail($id); // Adjust the model and method based on your project
+        $job = Job::findOrFail($id); 
         return view('jobDetails', ['job' => $job]);
     }
 
     public function apply(Request $request)
     {
-        // Get the authenticated student ID
         $studentId = auth()->user()->id;
-
-        // Create a record in the 'zaujemcovia' table
         Applier::create([
             'tema' => $request->input('tema'),
             'student' => $studentId,
         ]);
 
-        // You can return a response if needed
         return back();
     }
 
 
     public function withdraw(Request $request)
     {
-        // Get the authenticated student ID
         $studentId = auth()->user()->id;
-
-        // Get the tema (job ID) from the form
         $tema = $request->input('tema');
-
-        // Find and delete the record in the 'zaujemcovia' table
         Applier::where('tema', $tema)->where('student', $studentId)->delete();
-
-        // You can return a response if needed
         return back();
     }
     
     public function assignJob(Request $request)
     {
-        // Validate the request
         $request->validate([
-            'studentId' => 'required|exists:users,id', // Make sure the student ID exists
-            'jobId' => 'required|exists:jobs,id', // Make sure the job ID exists
+            'studentId' => 'required|exists:users,id', 
+            'jobId' => 'required|exists:jobs,id', 
         ]);
 
-        // Update the job with the assigned student
         $job = Job::find($request->input('jobId'));
         $job->student = $request->input('studentId');
         $job->stav = "priradena";
         $job->save();
 
-        // Return a response to the client
         return response()->json(['success' => true]);
     }
 
     public function cancelAssignment(Request $request)
     {
-        // Retrieve the job by ID
         $job = Job::find($request->input('jobId'));
-
-        // Update the job to set student to null and stav to "nepriradene"
         $job->student = null;
         $job->stav = "nepriradene";
         $job->save();

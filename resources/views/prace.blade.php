@@ -101,9 +101,6 @@
     </div>
 </div>
 
-
-
-
 @if(count($jobs) > 0)
 
     @foreach($jobs as $job)
@@ -111,41 +108,34 @@
             <div class="col-md-6 card mx-auto">
                 <a href="{{ route('jobDetails', ['id' => $job->id]) }}">{{$job->odbor}} - {{$job->nazov}}</a>
                 <p>Vedúci: {{$job->veduci}}</p>
-                <p>{!! nl2br(e(Str::limit($job->popis, 300))) !!}</p> {{-- Adjust the character limit as needed --}}
+                <p>{!! nl2br(e(Str::limit($job->popis, 300))) !!}</p> 
                 <p>Stav: {{$job->stav}} </p>
             </div>
         </div>
     @endforeach
 
-    
     @if ($jobs->lastPage() > 1)
-
-    <div class="posuvnik text-center">
-        <ul class="pagination">
-            <li class="{{ ($jobs->currentPage() == 1) ? ' disabled' : '' }}">
-                <a href="{{ $jobs->url(1) }}" class="btn btn-secondary">Previous</a>
-            </li>
-            @for ($i = 1; $i <= $jobs->lastPage(); $i++)
-                <li class="{{ ($jobs->currentPage() == $i) ? ' active' : '' }}">
-                    <a href="{{ $jobs->url($i) }}" class="btn btn-secondary">{{ $i }}</a>
+        <div class="posuvnik text-center">
+            <ul class="pagination">
+                <li class="{{ ($jobs->currentPage() == 1) ? ' disabled' : '' }}">
+                    <a href="{{ $jobs->url(1) }}" class="btn btn-secondary">Previous</a>
                 </li>
-            @endfor
-            <li class="{{ ($jobs->currentPage() == $jobs->lastPage()) ? ' disabled' : '' }}">
-                <a href="{{ $jobs->url($jobs->currentPage() + 1) }}" class="btn btn-secondary">Next</a>
-            </li>
-        </ul>
-    </div> 
-
-
+                @for ($i = 1; $i <= $jobs->lastPage(); $i++)
+                    <li class="{{ ($jobs->currentPage() == $i) ? ' active' : '' }}">
+                        <a href="{{ $jobs->url($i) }}" class="btn btn-secondary">{{ $i }}</a>
+                    </li>
+                @endfor
+                <li class="{{ ($jobs->currentPage() == $jobs->lastPage()) ? ' disabled' : '' }}">
+                    <a href="{{ $jobs->url($jobs->currentPage() + 1) }}" class="btn btn-secondary">Next</a>
+                </li>
+            </ul>
+        </div> 
     @endif
-
 @else
-    <p>Neboli nájdene žiadne</p>
+    <p>Neboli nájdené žiadne</p>
 @endif
-
 
 <script src="{{ asset('js/filterScript.js') }}"></script>
 <script>var jobDetailsBaseUrl = '{{ route('jobDetails', ['id' => '0']) }}';</script>
-
 
 @endsection

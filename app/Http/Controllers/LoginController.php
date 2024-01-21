@@ -19,24 +19,22 @@ class LoginController extends Controller
             'username' => [
                 'required',
                 'regex:/^[a-zA-Z0-9]+$/',
-                Rule::notIn(['http', 'https']) // Zabraňuje použitiu http alebo https v username
+                Rule::notIn(['http', 'https']) 
             ],
             'password' => [
                 'required',
                 'regex:/^[a-zA-Z0-9.,_-]+$/',
-                Rule::notIn(['http', 'https']) // Zabraňuje použitiu http alebo https v hesle
+                Rule::notIn(['http', 'https']) 
             ],
         ]);
 
         $credentials = $request->only('username', 'password');
 
         if (Auth::attempt($credentials)) {
-            // Authentication passed
             return redirect()->route('login');
         }
 
-        // Authentication failed
-        return redirect()->back()->withErrors(['login' => 'Invalid credentials'])->withInput();
+        return redirect()->back()->withErrors(['login' => 'Nesprávne prihlasovacie údaje.'])->withInput();
     }
 
     public function logout()

@@ -12,9 +12,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
-    
-
 </head>
 
 <body>
@@ -94,19 +91,15 @@
                             </li>
                         @endif
                     @endauth
-
                 </ul>
 
                 <div class="login">
-                    
-                        
                         <span>{{ auth()->user()->name }}</span>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <i class="bi bi-person-circle"></i>
                             <button type="submit" class="btn btn-warning">Logout</button>
                         </form>
-                    
                     @endauth
                 </div>
             </div>
@@ -115,10 +108,8 @@
 
     @yield('content')
 
-
     <footer>
         <div style="text-align: center">Copyright 2024 fasanok</div>
-    
     </footer>
 
 </body>

@@ -3,7 +3,7 @@
 @section('content')
 <div class="row">
     <div class="col-md-6 card mx-auto">
-        <h4 class="center">Edituj pracu</h4>
+        <h4 class="center">Edituj prácu</h4>
             @if(Auth::user()->user_type == 'veduci')
                 <form action="{{ route('refreshJob', $job->id) }}" method="POST" class="white">
             @endif

@@ -11,6 +11,7 @@ Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login/authenticate', [LoginController::class, 'authenticate'])->name('login.authenticate');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
+//prihlaseny
 Route::middleware(['auth'])->group(function () {
     Route::get('/dokumenty', function(){return view('dokumenty');})->name('dokumenty');
     Route::get('/prace', [JobController::class, 'showJobView'])->name('prace');
@@ -18,8 +19,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/job-details/{id}', [JobController::class, 'jobDetails'])->name('jobDetails');
     Route::get('/jobs/{jobId}', [JobController::class, 'showJobCard'])->name('jobs.show');
 });
-
-
 
 //student
 Route::middleware(['auth', 'student'])->group(function () {
@@ -58,7 +57,7 @@ Route::middleware(['auth', 'veduci'])->group(function () {
     Route::post('/cancelAssignment', [JobController::class,'cancelAssignment'])->name('cancelAssignment');
 });
 
-//admin only
+//admin
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/add-job-view-admin', [JobController::class, 'showAddPracuView'])->name('addJobViewAdmin');
     Route::post('/add-job-admin', [JobController::class, 'addJob'])->name('addJobAdmin');
