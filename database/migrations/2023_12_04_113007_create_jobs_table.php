@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('nazov',50);
             $table->string('veduci',30);
             $table->string('tutor',20)->nullable();
-            $table->string('student',20)->nullable();
+            $table->bigInteger('student')->nullable();
             $table->text('popis');
             $table->date('cas');
             $table->string('katedra',10);

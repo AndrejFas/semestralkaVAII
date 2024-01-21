@@ -10,4 +10,11 @@ class Job extends Model
     use HasFactory;
 
     protected $fillable = ['nazov', 'veduci', 'tutor', 'student', 'popis', 'cas', 'katedra', 'odbor', 'jazyk', 'stupen', 'stav'];
+
+    
+
+    public function job()
+    {
+        return $this->belongsTo(User::class, 'tema');
+    }
 }

@@ -92,16 +92,6 @@
                             </select>
                         </div>
 
-                        <div class="form-group mb-3">
-                            <label for="triedenie">Trieď podľa</label>
-                            <select class="form-select" name="triedenie">
-                                <option value="1">Času</option>
-                                <option value="2">Názvu</option>
-                                <option value="3">Vedúci</option>
-                                <option value="4">Stupeň</option>
-                                <option value="5">Katedra</option>
-                            </select>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -127,9 +117,9 @@
         </div>
     @endforeach
 
-
-    @if ($jobs->lastPage() > 1)
     
+    @if ($jobs->lastPage() > 1)
+
     <div class="posuvnik text-center">
         <ul class="pagination">
             <li class="{{ ($jobs->currentPage() == 1) ? ' disabled' : '' }}">
@@ -144,9 +134,9 @@
                 <a href="{{ $jobs->url($jobs->currentPage() + 1) }}" class="btn btn-secondary">Next</a>
             </li>
         </ul>
-    </div>
+    </div> 
 
-        
+
     @endif
 
 @else

@@ -8,22 +8,22 @@
             @csrf
             <div class="form-group">
                 <label for="nazovTemy">Názov témy</label>
-                <input type="text" name="nazov" class="form-control">
+                <input type="text" id="nazov" name="nazov" class="form-control" required maxlength="50">
             </div>
-
+        
             <div class="form-group">
                 <label for="veduci">Vedúci</label>
-                <input type="text" name="veduci" class="form-control">
+                <input type="text" name="veduci" class="form-control" required pattern="[A-Za-záäčďéěíĺľňóôŕšťúůýžÁÄČĎÉĚÍĹĽŇÓÔŔŠŤÚŮÝŽ ]+" maxlength="20">
             </div>
-
+        
             <div class="form-group">
                 <label for="tutor">Tútor</label>
-                <input type="text" name="tutor" class="form-control">
+                <input type="text" name="tutor" class="form-control" pattern="[A-Za-záäčďéěíĺľňóôŕšťúůýžÁÄČĎÉĚÍĹĽŇÓÔŔŠŤÚŮÝŽ ]+" maxlength="20">
             </div>
-
+        
             <div class="form-group">
                 <label for="popis">Popis</label>
-                <textarea rows="5" name="popis" class="form-control"></textarea>
+                <textarea rows="5" name="popis" class="form-control" required></textarea>
             </div>
 
             <div class="form-group">
@@ -77,7 +77,5 @@
         </form>
     </div>
 </div>
-@if($errors->any())
-@endif
 
 @endsection

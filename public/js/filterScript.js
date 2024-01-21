@@ -1,12 +1,12 @@
 // Add JavaScript to handle the AJAX request
 document.getElementById('filterButton').addEventListener('click', function () {
-    // Get form data
+// Get form data
     var formData = new FormData(document.getElementById('filterForm'));
-
+    
     // Make AJAX request
     axios.post('/jobs/filter', formData)
         .then(function (response) {
-            // Update the results section with the filtered data
+// Update the results section with the filtered data
             var jobResultsContainers = document.getElementsByClassName('jobResults');
             
             // Clear previous results
@@ -23,7 +23,7 @@ document.getElementById('filterButton').addEventListener('click', function () {
                     // Create a new job card
                     var jobCard = document.createElement('div');
                     jobCard.className = 'col-md-6 card mx-auto';
-                    
+
                     // Generate the job details URL using the base URL and job ID
                     var jobDetailsUrl = jobDetailsBaseUrl + job.id;
 
@@ -41,13 +41,13 @@ document.getElementById('filterButton').addEventListener('click', function () {
                 });
             } else {
                 // Display a message when no jobs are found
-                Array.from(jobResultsContainers).forEach(function (container) {
+                                Array.from(jobResultsContainers).forEach(function (container) {
                     var noResultsMessage = document.createElement('p');
                     noResultsMessage.textContent = 'Neboli nájdené žiadne výsledky.';
                     container.appendChild(noResultsMessage);
                 });
             }
-        })
+                    })
         .catch(function (error) {
             console.error('Error making AJAX request:', error);
 

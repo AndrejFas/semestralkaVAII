@@ -72,7 +72,6 @@
                                     <li><a class="dropdown-item" href="#">Priradená téma</a></li>
                                 @endif
                             @endauth
-                            <li><a class="dropdown-item" href="#">Informácie o štátnej skúške</a></li>
                             @auth
                                 @if(Auth::user()->user_type == 'student')
                                     <li><a class="dropdown-item" href="{{route('editFiles')}}">Odovzdávanie súborov</a></li>

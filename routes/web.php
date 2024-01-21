@@ -10,17 +10,24 @@ use App\Http\Controllers\PouzivatelController;
 Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login/authenticate', [LoginController::class, 'authenticate'])->name('login.authenticate');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
- 
-Route::get('/dokumenty', function(){return view('dokumenty');})->name('dokumenty');
-Route::get('/prace', [JobController::class, 'showJobView'])->name('prace');
-Route::post('/jobs/filter', [JobController::class, 'filterJobs'])->name('job.filter');
-Route::get('/job-details/{id}', [JobController::class, 'jobDetails'])->name('jobDetails');
 
-Route::post('/apply', [JobController::class, 'apply'])->name('apply');
-Route::post('/withdraw', [JobController::class, 'withdraw'])->name('withdraw');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dokumenty', function(){return view('dokumenty');})->name('dokumenty');
+    Route::get('/prace', [JobController::class, 'showJobView'])->name('prace');
+    Route::post('/jobs/filter', [JobController::class, 'filterJobs'])->name('job.filter');
+    Route::get('/job-details/{id}', [JobController::class, 'jobDetails'])->name('jobDetails');
+    Route::get('/jobs/{jobId}', [JobController::class, 'showJobCard'])->name('jobs.show');
+});
+
+
 
 //student
 Route::middleware(['auth', 'student'])->group(function () {
+
+    Route::post('/apply', [JobController::class, 'apply'])->name('apply');
+    Route::post('/withdraw', [JobController::class, 'withdraw'])->name('withdraw');
+
+
     Route::get('/edit-files', [FileController::class, 'editFilesView'])->name('editFiles');
 
     Route::post('/edit-pdf-text', [FileController::class, 'editPdfText'])->name('editPdfText');
@@ -44,6 +51,9 @@ Route::middleware(['auth', 'admin', 'veduci'])->group(function () {
     Route::get('/show-job', [JobController::class, 'showJob'])->name('showJob');
     Route::get('/edit-job/{id}', [JobController::class, 'editJob'])->name('editJob');
     Route::put('/refresh-job/{id}', [JobController::class, 'refreshJob'])->name('refreshJob');
+
+    Route::post('/assign-job', [JobController::class,'assignJob'])->name('assignJob');
+    Route::post('/cancelAssignment', [JobController::class,'cancelAssignment'])->name('cancelAssignment');
 });
 
 //admin only

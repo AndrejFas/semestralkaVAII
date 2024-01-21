@@ -10,4 +10,11 @@ class Applier extends Model
     use HasFactory;
 
     protected $fillable = ['tema', 'student'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'student');
+    }
+
+    
 }
