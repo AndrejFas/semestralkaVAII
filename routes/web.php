@@ -27,6 +27,7 @@ Route::middleware(['auth', 'student'])->group(function () {
     Route::post('/apply', [JobController::class, 'apply'])->name('apply');
     Route::post('/withdraw', [JobController::class, 'withdraw'])->name('withdraw');
 
+    Route::get('/priradenaPraca', function(){return view('priradenaPraca');})->name('priradenaPraca');
 
     Route::get('/edit-files', [FileController::class, 'editFilesView'])->name('editFiles');
 

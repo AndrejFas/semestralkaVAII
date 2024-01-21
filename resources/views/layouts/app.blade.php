@@ -69,7 +69,7 @@
                             <li><a class="dropdown-item" href="{{route('prace')}}">Záverečné práce</a></li>
                             @auth
                                 @if(Auth::user()->user_type == 'student')
-                                    <li><a class="dropdown-item" href="#">Priradená téma</a></li>
+                                    <li><a class="dropdown-item" href="{{route('priradenaPraca')}}">Priradená téma</a></li>
                                 @endif
                             @endauth
                             @auth

@@ -60,8 +60,8 @@
                             <select class="form-select" name="stav">
                                 <option selected></option>
                                 <option value="nepriradene">nepriradené</option>
-                                <option value="priradene">priradené</option>
-                                <option value="skoncene">skončené</option>
+                                <option value="priradena">priradené</option>
+                                <option value="skoncena">skončené</option>
                             </select>
                         </div>
                         <div class="form-group mb-3">
