@@ -122,4 +122,18 @@ div .row {
         background-color: lightgray !important;
         border: none;
     }
+
+    a.dropdown-item {
+        background-color: #feb81c;
+    }
+
+    a.dropdown-item:hover{
+        background-color: #feb81c !important;
+        color: white !important;
+    }
+
+    ul.dropdown-menu.show {
+        display:table-header-group;
+    }
+
   }

@@ -82,11 +82,11 @@
                                     Admin panel
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <a href="{{ route('addUserView') }}">Pridaj pouzivatela</a>
+                                    <li><a class="dropdown-item" href="{{ route('addUserView') }}">Pridaj pouzivatela</a></li>
 
-                                    <a href="{{ route('showUser') }}">Zobraz pouzivatelov</a>
+                                    <li><a class="dropdown-item" href="{{ route('showUser') }}">Zobraz pouzivatelov</a></li>
 
-                                    <a href="{{ route('showFiles') }}">Súbory študentov</a>
+                                    <li><a class="dropdown-item" href="{{ route('showFiles') }}">Súbory študentov</a></li>
                                 </ul>
                             </li>
                         @endif
