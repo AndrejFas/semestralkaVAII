@@ -44,7 +44,8 @@
                         @foreach(\App\Models\Applier::where('tema', $job->id)->get() as $applier)
                             <li>
                                 {{ $applier->user->first_name }} {{ $applier->user->last_name }} {{ $applier->user->username }}
-                                <button type="button" class="btn btn-secondary priradeniePrace" data-student-id="{{ $applier->user->id }}">Priradiť</button>
+                                <div><button type="button" class="btn btn-secondary priradeniePrace" data-student-id="{{ $applier->user->id }}">Priradiť</button></div>
+                                
                             </li>
                         @endforeach
                     </ul>
