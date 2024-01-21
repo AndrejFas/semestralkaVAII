@@ -44,10 +44,11 @@ Route::middleware(['auth', 'student'])->group(function () {
     Route::post('/delete-pdf-originalita', [FileController::class, 'deletePdfOriginalita'])->name('deletePdfOriginalita');
 });
 
-//admin a veduci
-Route::middleware(['auth', 'admin', 'veduci'])->group(function () {
-    Route::get('/add-job-view', function(){return view('addPracu');})->name('addJobView');
+//veduci
+Route::middleware(['auth', 'veduci'])->group(function () {
+    Route::get('/add-job-view', [JobController::class, 'showAddPracuView'])->name('addJobView');
     Route::post('/add-job', [JobController::class, 'addJob'])->name('addJob');
+
     Route::delete('/delete-job/{id}', [JobController::class, 'deleteJob'])->name('deleteJob');
     Route::get('/show-job', [JobController::class, 'showJob'])->name('showJob');
     Route::get('/edit-job/{id}', [JobController::class, 'editJob'])->name('editJob');
@@ -59,6 +60,17 @@ Route::middleware(['auth', 'admin', 'veduci'])->group(function () {
 
 //admin only
 Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/add-job-view-admin', [JobController::class, 'showAddPracuView'])->name('addJobViewAdmin');
+    Route::post('/add-job-admin', [JobController::class, 'addJob'])->name('addJobAdmin');
+    Route::delete('/delete-job-admin/{id}', [JobController::class, 'deleteJob'])->name('deleteJobAdmin');
+    Route::get('/show-job-admin', [JobController::class, 'showJob'])->name('showJobAdmin');
+    Route::get('/edit-job-admin/{id}', [JobController::class, 'editJob'])->name('editJobAdmin');
+    Route::put('/refresh-job-admin/{id}', [JobController::class, 'refreshJob'])->name('refreshJobAdmin');
+
+    Route::post('/assign-job-admin', [JobController::class,'assignJob'])->name('assignJob');
+    Route::post('/cancelAssignment-admin', [JobController::class,'cancelAssignment'])->name('cancelAssignmentA');
+
+
     Route::get('/add-user-view', function(){return view('addPouzivatel');})->name('addUserView');
     Route::post('/add-user', [PouzivatelController::class, 'addUser'])->name('addUser');
     Route::delete('/delete-user/{id}', [PouzivatelController::class, 'deleteUser'])->name('deleteUser');

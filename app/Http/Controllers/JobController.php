@@ -201,4 +201,6 @@ class JobController extends Controller
         return response()->json(['success' => true]);
     }
 
+    public function showAddPracuView(Request $request){return view('addPracu');}
+    
 }

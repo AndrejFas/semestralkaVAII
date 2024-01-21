@@ -4,7 +4,14 @@
 <div class="row">
     <div class="col-md-6 card mx-auto">
         <h4 class="center">Pridaj pracu</h4>
-        <form id="pridajPracuForm" action="{{ route('addJob') }}" method="POST" class="white">
+            @if(Auth::user()->user_type == 'veduci')
+                <form id="pridajPracuForm" action="{{ route('addJob') }}" method="POST" class="white">
+            @endif
+            
+            @if(Auth::user()->user_type == 'admin')
+                <form id="pridajPracuForm" action="{{ route('addJobAdmin') }}" method="POST" class="white">
+            @endif
+        
             @csrf
             <div class="form-group">
                 <label for="nazovTemy">Názov témy</label>
