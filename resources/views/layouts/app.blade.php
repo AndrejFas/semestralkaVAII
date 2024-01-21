@@ -117,7 +117,7 @@
 
 
     <footer>
-        <div style="text-align: center">Copyright 2023 fasanok</div>
+        <div style="text-align: center">Copyright 2024 fasanok</div>
     
     </footer>
 

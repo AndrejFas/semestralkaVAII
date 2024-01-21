@@ -16,8 +16,8 @@
                             <div class="form-group mb-3">
 
                                 @if($file->pdf_text != null)
-                                    <div style="margin-bottom: 5px"><a href="{{ route('downloadPdfText') }}" class="btn btn-secondary">Stiahnuť PDF Text</a></div>
-                                    <form id="deletePdfTextForm" method="POST" action="{{ route('deletePdfText') }}">
+                                    <div style="margin-bottom: 5px"><a href="{{ route('downloadPdfTextAdmin', $file->user->id) }}" class="btn btn-secondary">Stiahnuť PDF Text</a></div>
+                                    <form id="deletePdfTextForm" method="POST" action="{{ route('deletePdfTextAdmin', $file->user->id) }}">
                                         @csrf
                                         <button type="submit" class="btn btn-secondary">Odstrániť PDF Text</button>
                                     </form>
@@ -29,8 +29,8 @@
                         <div class="card-body">
                             <div class="form-group mb-3">
                                 @if($file->zip_prilohy != null)
-                                    <div style="margin-bottom: 5px"><a href="{{ route('downloadZipPrilohy') }}" class="btn btn-secondary">Stiahnuť ZIP Prílohy</a></div>
-                                    <form id="deleteZipPrilohyForm" method="POST" action="{{ route('deleteZipPrilohy') }}">
+                                    <div style="margin-bottom: 5px"><a href="{{ route('downloadZipPrilohyAdmin', $file->user->id) }}" class="btn btn-secondary">Stiahnuť ZIP Prílohy</a></div>
+                                    <form id="deleteZipPrilohyForm" method="POST" action="{{ route('deleteZipPrilohyAdmin', $file->user->id) }}">
                                         @csrf
                                         <button type="submit" class="btn btn-secondary">Odstrániť ZIP Prílohy</button>
                                     </form>
@@ -42,8 +42,8 @@
                         <div class="card-body">
                             <div class="form-group mb-3">
                                 @if($file->pdf_originalita != null)  
-                                    <div style="margin-bottom: 5px"><a href="{{ route('downloadPdfOriginalita') }}" class="btn btn-secondary">Stiahnuť PDF Originalita</a></div>
-                                    <form id="deletePdfOriginalitaForm" method="POST" action="{{ route('deletePdfOriginalita') }}">
+                                    <div style="margin-bottom: 5px"><a href="{{ route('downloadPdfOriginalitaAdmin', $file->user->id) }}" class="btn btn-secondary">Stiahnuť PDF Originalita</a></div>
+                                    <form id="deletePdfOriginalitaForm" method="POST" action="{{ route('deletePdfOriginalitaAdmin', $file->user->id) }}">
                                         @csrf
                                         <button type="submit" class="btn btn-secondary">Odstrániť PDF Originalita</button>
                                     </form>

@@ -31,12 +31,34 @@
                 @endif
             @endif
         @endauth
+
+        @auth
+            @if(Auth::user()->user_type == 'veduci' && Auth::user()->id == $job->veduci_id )
+                <form action="{{ route('deleteJob', $job->id) }}" method="POST" style="display:inline;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-secondary">Odstrániť</button>
+                    <a href="{{ route('editJob', $job->id) }}" class="btn btn-secondary">Upraviť</a>
+                </form>
+            @endif
+        @endauth
+
+        @auth
+            @if(Auth::user()->user_type == 'admin')
+                <form action="{{ route('deleteJobAdmin', $job->id) }}" method="POST" style="display:inline;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-secondary">Odstrániť</button>
+                    <a href="{{ route('editJobAdmin', $job->id) }}" class="btn btn-secondary">Upraviť</a>
+                </form>
+            @endif
+        @endauth
     </div>
 
 
     @auth
         @if((Auth::user()->user_type == 'veduci' && Auth::user()->id == $job->veduci_id )|| Auth::user()->user_type == 'admin')
-            @if($job->stav == 'nepriradena')
+            @if($job->stav == 'nepriradene')
                 <!-- Display the list of applicants -->
                 <div class="col-md-6 card mx-auto">
                     <h4>Prihlásení študenti:</h4>
@@ -45,13 +67,13 @@
                             <li>
                                 {{ $applier->user->first_name }} {{ $applier->user->last_name }} {{ $applier->user->username }}
                                 <div><button type="button" class="btn btn-secondary priradeniePrace" data-student-id="{{ $applier->user->id }}">Priradiť</button></div>
-                                
+
                             </li>
                         @endforeach
                     </ul>
                 </div>
             @endif
-    
+
             @if($job->stav == 'priradena')
             <!-- Display the list of assigned students -->
             <div class="col-md-6 card mx-auto">
@@ -78,7 +100,7 @@
         button.addEventListener('click', function () {
             // Get the student ID from the 'data-student-id' attribute
             var studentId = this.getAttribute('data-student-id');
-            
+
             // Call a function to handle the assignment
             assignJobToStudent(studentId);
         });
@@ -145,7 +167,7 @@
             });
         }
     });
-</script>   
+</script>
 
 @endsection
 

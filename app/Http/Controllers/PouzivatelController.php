@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Applier;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\File;
+use App\Models\Job;
 
 class PouzivatelController extends Controller
 {
@@ -52,8 +54,18 @@ class PouzivatelController extends Controller
 
     public function deleteUser($id)
     {
+
+        File::where('student_id', $id)->delete();
+
         $user = User::findOrFail($id);
         $user->delete();
+
+        Applier::where('student', $id)->delete();
+
+        Job::where('student', $id)->update([
+            'student' => null,
+            'stav' => 'nepriradene',
+        ]);
 
         return redirect()->route('showUser')->with('success', 'Uživatel byl odstraněn.');
     }

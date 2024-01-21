@@ -32,16 +32,16 @@ Route::middleware(['auth', 'student'])->group(function () {
     Route::get('/edit-files', [FileController::class, 'editFilesView'])->name('editFiles');
 
     Route::post('/edit-pdf-text', [FileController::class, 'editPdfText'])->name('editPdfText');
-    Route::get('/download-pdf-text', [FileController::class, 'downloadPdfText'])->name('downloadPdfText');
-    Route::post('/delete-pdf-text', [FileController::class, 'deletePdfText'])->name('deletePdfText');
+    Route::get('/download-pdf-text/{id}', [FileController::class, 'downloadPdfText'])->name('downloadPdfText');
+    Route::post('/delete-pdf-text/{id}', [FileController::class, 'deletePdfText'])->name('deletePdfText');
 
     Route::post('/edit-zip-prilohy', [FileController::class, 'editZipPrilohy'])->name('editZipPrilohy');
-    Route::get('/download-zip-prilohy', [FileController::class, 'downloadZipPrilohy'])->name('downloadZipPrilohy');
-    Route::post('/delete-zip-prilohy', [FileController::class, 'deleteZipPrilohy'])->name('deleteZipPrilohy');
+    Route::get('/download-zip-prilohy/{id}', [FileController::class, 'downloadZipPrilohy'])->name('downloadZipPrilohy');
+    Route::post('/delete-zip-prilohy/{id}', [FileController::class, 'deleteZipPrilohy'])->name('deleteZipPrilohy');
 
     Route::post('/edit-pdf-originalita', [FileController::class, 'editPdfOriginalita'])->name('editPdfOriginalita');
-    Route::get('/download-pdf-originalita', [FileController::class, 'downloadPdfOriginalita'])->name('downloadPdfOriginalita');
-    Route::post('/delete-pdf-originalita', [FileController::class, 'deletePdfOriginalita'])->name('deletePdfOriginalita');
+    Route::get('/download-pdf-originalita/{id}', [FileController::class, 'downloadPdfOriginalita'])->name('downloadPdfOriginalita');
+    Route::post('/delete-pdf-originalita/{id}', [FileController::class, 'deletePdfOriginalita'])->name('deletePdfOriginalita');
 });
 
 //veduci
@@ -50,7 +50,7 @@ Route::middleware(['auth', 'veduci'])->group(function () {
     Route::post('/add-job', [JobController::class, 'addJob'])->name('addJob');
 
     Route::delete('/delete-job/{id}', [JobController::class, 'deleteJob'])->name('deleteJob');
-    Route::get('/show-job', [JobController::class, 'showJob'])->name('showJob');
+
     Route::get('/edit-job/{id}', [JobController::class, 'editJob'])->name('editJob');
     Route::put('/refresh-job/{id}', [JobController::class, 'refreshJob'])->name('refreshJob');
 
@@ -63,7 +63,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/add-job-view-admin', [JobController::class, 'showAddPracuView'])->name('addJobViewAdmin');
     Route::post('/add-job-admin', [JobController::class, 'addJob'])->name('addJobAdmin');
     Route::delete('/delete-job-admin/{id}', [JobController::class, 'deleteJob'])->name('deleteJobAdmin');
-    Route::get('/show-job-admin', [JobController::class, 'showJob'])->name('showJobAdmin');
+
     Route::get('/edit-job-admin/{id}', [JobController::class, 'editJob'])->name('editJobAdmin');
     Route::put('/refresh-job-admin/{id}', [JobController::class, 'refreshJob'])->name('refreshJobAdmin');
 
@@ -79,6 +79,15 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::put('/refresh-user/{id}', [PouzivatelController::class, 'refreshUser'])->name('refreshUser');
 
     Route::get('/file-view-admin', [FileController::class, 'showFiles'])->name('showFiles');
+
+    Route::get('/download-pdf-text-admin/{id}', [FileController::class, 'downloadPdfText'])->name('downloadPdfTextAdmin');
+    Route::post('/delete-pdf-text-admin/{id}', [FileController::class, 'deletePdfText'])->name('deletePdfTextAdmin');
+
+    Route::get('/download-zip-prilohy-admin/{id}', [FileController::class, 'downloadZipPrilohy'])->name('downloadZipPrilohyAdmin');
+    Route::post('/delete-zip-prilohy-admin/{id}', [FileController::class, 'deleteZipPrilohy'])->name('deleteZipPrilohyAdmin');
+
+    Route::get('/download-pdf-originalita-admin/{id}', [FileController::class, 'downloadPdfOriginalita'])->name('downloadPdfOriginalitaAdmin');
+    Route::post('/delete-pdf-originalita-admin/{id}', [FileController::class, 'deletePdfOriginalita'])->name('deletePdfOriginalitaAdmin');
 });
 
 

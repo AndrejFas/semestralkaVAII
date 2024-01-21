@@ -48,7 +48,7 @@ class JobController extends Controller
         $job = Job::findOrFail($id);
         $job->delete();
 
-        return redirect()->route('addJob')->with('success', 'Práca odstánená.');
+        return redirect()->route('prace')->with('success', 'Práca odstánená.');
     }
 
     public function editJob($id)
@@ -73,15 +73,18 @@ class JobController extends Controller
         $job->update([
             'nazov' => $request->input('nazov'),
             'veduci' => $request->input('veduci'),
+            'veduci_id' => $request->input('veduci_id'),
             'tutor' => $request->input('tutor'),
             'popis' => $request->input('popis'),
             'stupen' => $request->input('stupen'),
             'jazyk' => $request->input('jazyk'),
             'odbor' => $request->input('odbor'),
             'katedra' => $request->input('katedra'),
+            'stav' => $request->input('stav'),
+            'student' => $request->input('student'),
             'cas' => now(),
         ]);
-        return redirect()->route('showUser')->with('success', 'Užívateľ bol aktualizovaný.');
+        return redirect()->route('jobDetails', $job->id)->with('success', 'Užívateľ bol aktualizovaný.');
     }
 
     public function showJobView(Request $request){
@@ -195,9 +198,9 @@ class JobController extends Controller
         // Retrieve the job by ID
         $job = Job::find($request->input('jobId'));
 
-        // Update the job to set student to null and stav to "nepriradena"
+        // Update the job to set student to null and stav to "nepriradene"
         $job->student = null;
-        $job->stav = "nepriradena";
+        $job->stav = "nepriradene";
         $job->save();
 
         return response()->json(['success' => true]);

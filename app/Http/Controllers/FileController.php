@@ -36,9 +36,10 @@ class FileController extends Controller
         return redirect()->route('editFiles')->with('success', 'PDF Text bol úspešne aktualizovaný.');
     }
 
-    public function downloadPdfText()
+    public function downloadPdfText($id)
     {
-        $studentId = auth()->id();
+        if ($id){$studentId = $id;}
+        else {$studentId = auth()->id();}
         $file = File::where('student_id', $studentId)->first();
 
         if ($file && $file->pdf_text &&  Storage::exists($file->pdf_text)) {
@@ -48,9 +49,10 @@ class FileController extends Controller
         }
     }
 
-    public function deletePdfText()
+    public function deletePdfText($id)
     {
-        $studentId = auth()->id();
+        if ($id){$studentId = $id;}
+        else {$studentId = auth()->id();}
         $file = File::where('student_id', $studentId)->first();
 
         if ($file && $file->pdf_text &&  Storage::exists($file->pdf_text)) {
@@ -82,9 +84,10 @@ class FileController extends Controller
         return redirect()->route('editFiles')->with('success', 'Zip Prilohy bol úspešne aktualizovaný.');
     }
 
-    public function downloadZipPrilohy()
+    public function downloadZipPrilohy($id)
     {
-        $studentId = auth()->id();
+        if ($id){$studentId = $id;}
+        else {$studentId = auth()->id();}
         $file = File::where('student_id', $studentId)->first();
 
         if ($file && $file->zip_prilohy &&  Storage::exists($file->zip_prilohy)) {
@@ -94,9 +97,10 @@ class FileController extends Controller
         }
     }
 
-    public function deleteZipPrilohy()
+    public function deleteZipPrilohy($id)
     {
-        $studentId = auth()->id();
+        if ($id){$studentId = $id;}
+        else {$studentId = auth()->id();}
         $file = File::where('student_id', $studentId)->first();
 
         if ($file && $file->zip_prilohy &&  Storage::exists($file->zip_prilohy)) {
@@ -127,9 +131,10 @@ class FileController extends Controller
         return redirect()->route('editFiles')->with('success', 'PDF Text bol úspešne aktualizovaný.');
     }
 
-    public function downloadPdfOriginalita()
+    public function downloadPdfOriginalita($id)
     {
-        $studentId = auth()->id();
+        if ($id){$studentId = $id;}
+        else {$studentId = auth()->id();}
         $file = File::where('student_id', $studentId)->first();
 
         if ($file && $file->pdf_originalita &&  Storage::exists($file->pdf_originalita)) {
@@ -139,9 +144,10 @@ class FileController extends Controller
         }
     }
 
-    public function deletePdfOriginalita()
+    public function deletePdfOriginalita($id)
     {
-        $studentId = auth()->id();
+        if ($id){$studentId = $id;}
+        else {$studentId = auth()->id();}
         $file = File::where('student_id', $studentId)->first();
 
         if ($file && $file->pdf_originalita &&  Storage::exists($file->pdf_originalita)) {
