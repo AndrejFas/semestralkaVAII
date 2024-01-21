@@ -15,9 +15,9 @@ class User extends Authenticatable
         return $this->hasOne(File::class, 'student_id');
     }
 
-    public function applier()
+    public function appliers()
     {
-        return $this->hasOne(Applier::class, 'student');
+        return $this->hasMany(Applier::class, 'student');
     }
 
     public function job()

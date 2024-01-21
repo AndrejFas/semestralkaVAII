@@ -50,40 +50,50 @@
                             @endif
                         @endauth
                     </li>
-                    <li class="nav-item">
+
+                    <li>
                         @auth
-                            @if(Auth::user()->user_type == 'admin')
-                                <a href="{{ route('addUserView') }}">Pridaj pouzivatela</a>
-                            @endif
-                        @endauth
-                    </li>
-                    <li class="nav-item">
-                        @auth
-                            @if(Auth::user()->user_type == 'admin')
-                                <a href="{{ route('showUser') }}">Zobraz pouzivatelov</a>
+                            @if(Auth::user()->user_type == 'admin' || Auth::user()->user_type == 'veduci' )
+                                <a class="dropdown-item" href="{{route('prace')}}">Záverečné práce</a>
                             @endif
                         @endauth
                     </li>
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Témy
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{route('prace')}}">Záverečné práce</a></li>
-                            @auth
-                                @if(Auth::user()->user_type == 'student')
+                    @auth
+                        @if(Auth::user()->user_type == 'student')
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Témy
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="{{route('prace')}}">Záverečné práce</a></li>
+                                    
                                     <li><a class="dropdown-item" href="{{route('priradenaPraca')}}">Priradená téma</a></li>
-                                @endif
-                            @endauth
-                            @auth
-                                @if(Auth::user()->user_type == 'student')
-                                    <li><a class="dropdown-item" href="{{route('editFiles')}}">Odovzdávanie súborov</a></li>
-                                    @endif
-                            @endauth
-                        </ul>
-                    </li>
-                    
+                                           
+                                    <li><a class="dropdown-item" href="{{route('editFiles')}}">Odovzdávanie súborov</a></li>                                   
+                                </ul>
+                            </li>
+                        @endif
+                    @endauth
+
+                    @auth
+                        @if(Auth::user()->user_type == 'admin')
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Admin panel
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <a href="{{ route('addUserView') }}">Pridaj pouzivatela</a>
+
+                                    <a href="{{ route('showUser') }}">Zobraz pouzivatelov</a>
+
+                                    <a href="{{ route('showFiles') }}">Súbory študentov</a>
+                                </ul>
+                            </li>
+                        @endif
+                    @endauth
 
                 </ul>
 

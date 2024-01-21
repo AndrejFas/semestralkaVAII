@@ -13,6 +13,7 @@ class JobController extends Controller
         $request->validate([
             'nazov' => 'required|max:50',
             'veduci' => 'required|regex:/^[A-Za-záäčďéěíĺľňóôŕšťúůýžÁÄČĎÉĚÍĹĽŇÓÔŔŠŤÚŮÝŽ ]+$/|max:20',
+            'veduci_id' => 'required',
             'tutor' => 'nullable|regex:/^[A-Za-záäčďéěíĺľňóôŕšťúůýžÁÄČĎÉĚÍĹĽŇÓÔŔŠŤÚŮÝŽ ]+$/|max:20',
             'popis' => 'required',
             'stupen' => 'required|string',
@@ -23,6 +24,7 @@ class JobController extends Controller
         $job = Job::create([
             'nazov' => $request->input('nazov'),
             'veduci' => $request->input('veduci'),
+            'veduci_id' => $request->input('veduci_id'),
             'tutor' => $request->input('tutor'),
             'student' => null,
             'popis' => $request->input('popis'),

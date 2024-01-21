@@ -98,6 +98,23 @@ class PouzivatelController extends Controller
             ]);
         }
 
+        if ($user->user_type === 'student') {
+            // Check if a record with the specified student_id already exists
+            $existingFile = File::where('student_id', $user->id)->first();
+        
+            if (!$existingFile) {
+                // If no record exists, create a new one
+                $file = File::firstOrCreate(
+                    ['student_id' => $user->id],
+                    [
+                        'pdf_text' => null,
+                        'zip_prilohy' => null,
+                        'pdf_originalita' => null,
+                    ]
+                );
+            }
+        }
+
         return redirect()->route('showUser')->with('success', 'Užívateľ bol aktualizovaný.');
     }
 

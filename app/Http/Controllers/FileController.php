@@ -157,4 +157,11 @@ class FileController extends Controller
             return redirect()->route('editFiles')->with('failure', 'Súbor neexistuje.');
         }
     }
+
+    public function showFiles()
+    {
+        $files = File::all();
+
+        return view('adminFiles', compact('files'));
+    }
 }

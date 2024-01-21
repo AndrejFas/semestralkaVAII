@@ -35,7 +35,7 @@
 
 
     @auth
-        @if(Auth::user()->user_type == 'veduci' || Auth::user()->user_type == 'admin')
+        @if((Auth::user()->user_type == 'veduci' && Auth::user()->id == $job->veduci_id )|| Auth::user()->user_type == 'admin')
             @if($job->stav == 'nepriradena')
                 <!-- Display the list of applicants -->
                 <div class="col-md-6 card mx-auto">

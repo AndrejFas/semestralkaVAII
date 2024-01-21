@@ -77,6 +77,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/show-user', [PouzivatelController::class, 'showUser'])->name('showUser');
     Route::get('/edit-user/{id}', [PouzivatelController::class, 'editUser'])->name('editUser');
     Route::put('/refresh-user/{id}', [PouzivatelController::class, 'refreshUser'])->name('refreshUser');
+
+    Route::get('/file-view-admin', [FileController::class, 'showFiles'])->name('showFiles');
 });
 
 

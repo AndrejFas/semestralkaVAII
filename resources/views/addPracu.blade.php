@@ -75,7 +75,7 @@
                 </select>
             </div>
 
-
+            <input type="hidden" name="veduci_id" value= {{Auth::user()->id}}>
 
             <div>
                 <button type="submit" id="pridajPracuBtn" class="btn btn-secondary" style="margin-bottom: 20px; margin-top: 20px" >Pridaj</button>

@@ -73,9 +73,4 @@
     </div>
 </div>
 
-<!-- JavaScript section -->
-@section('scripts')
-<script src="{{ asset('js/upload.js') }}"></script>
-@endsection
-
 @endsection

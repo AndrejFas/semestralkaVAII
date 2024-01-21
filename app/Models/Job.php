@@ -9,7 +9,7 @@ class Job extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nazov', 'veduci', 'tutor', 'student', 'popis', 'cas', 'katedra', 'odbor', 'jazyk', 'stupen', 'stav'];
+    protected $fillable = ['nazov', 'veduci', 'tutor', 'student', 'popis', 'cas', 'katedra', 'odbor', 'jazyk', 'stupen', 'stav', 'veduci_id'];
 
     
 
